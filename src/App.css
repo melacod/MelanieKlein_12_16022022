@@ -1,0 +1,7 @@
+.app {
+    background-color: black;
+    max-width: 1440px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}

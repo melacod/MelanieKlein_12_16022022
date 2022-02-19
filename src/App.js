@@ -1,10 +1,11 @@
+import AppRouter from './AppRouter.js'
 
-function App() {
-  return (
-    <div className="App">
-      My App
-    </div>
-  );
+import './App.css'
+
+export default function App() {
+    return (
+        <div className="app">
+            <AppRouter />
+        </div>
+    )
 }
-
-export default App;

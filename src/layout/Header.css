@@ -1,0 +1,12 @@
+header {
+    height: 90px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+header .logo {
+    width: 20%;
+    margin-left: 25px;
+}

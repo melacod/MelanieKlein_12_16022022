@@ -1,0 +1,22 @@
+nav {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav > ul {
+    display: contents;
+    list-style: none;
+}
+
+nav > ul > li {
+    width: 25%;
+    text-align: center;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 24px;
+    color: white;
+}
