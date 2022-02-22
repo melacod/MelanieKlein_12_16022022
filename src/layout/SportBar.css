@@ -1,0 +1,56 @@
+.sportBar {
+    width: 120px;
+}
+
+.sportBar ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 200px;
+    width: 100%;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.sportBar li {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.sportBar li svg {
+    background-color: #ffffff;
+    border-radius: 6px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.sportBar span {
+    color: white;
+    font-weight: 400;
+    font-size: small;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    position: absolute;
+    left: 5%;
+    right: 87.5%;
+    bottom: 4%;
+}
+
+.sportBar .icon-yoga {
+    padding: 14px 14px 18px 14px;
+}
+
+.sportBar .icon-sp {
+    padding: 16px;
+}
+
+.sportBar .icon-bike {
+    padding: 16px 13.54px 16px 13px;
+}
+
+.sportBar .icon-muscu {
+    padding: 16px;
+}
