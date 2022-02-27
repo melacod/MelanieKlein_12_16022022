@@ -1,0 +1,27 @@
+.thumb {
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    background-color: #fbfbfb;
+    padding: 30px;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.thumb .icon-container {
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    margin-right: 25px;
+}
+
+.thumb .details {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.thumb .title {
+    font-size: 14px;
+    font-weight: 500;
+}

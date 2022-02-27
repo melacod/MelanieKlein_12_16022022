@@ -3,3 +3,12 @@
     height: 934px;
     display: flex;
 }
+
+.dashboard .content {
+    background-color: white;
+    width: calc(100% - 120px);
+}
+
+.dashboard .welcome {
+    color: red;
+}

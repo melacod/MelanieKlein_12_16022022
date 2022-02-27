@@ -1,0 +1,8 @@
+.thumbScores {
+    display: flex;
+    flex-direction: column;
+}
+
+.thumbScores > * {
+    margin-bottom: 40px;
+}

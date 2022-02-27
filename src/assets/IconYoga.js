@@ -1,3 +1,5 @@
+import './Icon.css'
+
 export default function IconYoga({
     color = '#FF0101',
     onClickFunction = undefined,
@@ -9,7 +11,7 @@ export default function IconYoga({
             height="32"
             viewBox="0 0 36 32"
             xmlns="http://www.w3.org/2000/svg"
-            className="icon-yoga"
+            className="icon icon-yoga"
         >
             <path
                 d="M18 8C20.2091 8 22 6.20914 22 4C22 1.79086 20.2091 0 18 0C15.7909 0 14 1.79086 14 4C14 6.20914 15.7909 8 18 8Z"

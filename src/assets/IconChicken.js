@@ -1,9 +1,12 @@
-export default function IconProtein({
-    color = '#FF0101',
+import './Icon.css'
+
+export default function IconChicken({
+    color = '#4AB8FF',
     onClickFunction = undefined,
 }) {
     return (
         <svg
+            className="icon icon-chicken"
             onClick={onClickFunction}
             width="19"
             height="19"

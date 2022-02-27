@@ -1,25 +1,25 @@
 import IconBike from '../assets/IconBike'
-import IconMuscu from '../assets/IconMuscu'
-import IconSP from '../assets/IconSP'
+import IconDumbell from '../assets/IconDumbell'
+import IconSwimming from '../assets/IconSwimming'
 import IconYoga from '../assets/IconYoga'
 
-import './SportBar.css'
+import './SportsBar.css'
 
-export default function SportBar() {
+export default function SportsBar() {
     return (
-        <div className="sportBar">
+        <div className="sports-bar">
             <ul>
                 <li>
                     <IconYoga />
                 </li>
                 <li>
-                    <IconSP />
+                    <IconSwimming />
                 </li>
                 <li>
                     <IconBike />
                 </li>
                 <li>
-                    <IconMuscu />
+                    <IconDumbell />
                 </li>
             </ul>
             <span>Copyright, SportSee 2020</span>

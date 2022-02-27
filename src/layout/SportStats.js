@@ -1,5 +1,10 @@
+import Stats from '../components/Stats'
 import './SportStats.css'
 
-export default function SportStats() {
-    return <div className="sportStats"></div>
+export default function SportStats({ userId }) {
+    return (
+        <div className="sportStats">
+            <Stats userId={userId} />
+        </div>
+    )
 }
