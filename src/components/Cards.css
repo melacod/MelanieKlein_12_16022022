@@ -1,8 +1,8 @@
-.thumbScores {
+.cardScores {
     display: flex;
     flex-direction: column;
 }
 
-.thumbScores > * {
+.cardScores > * {
     margin-bottom: 40px;
 }

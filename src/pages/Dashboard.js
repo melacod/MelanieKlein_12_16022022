@@ -2,9 +2,10 @@ import { useParams } from 'react-router-dom'
 import SportsBar from '../layout/SportsBar'
 import Error from '../components/Error'
 import Loader from '../components/Loader'
-import Scores from '../components/Scores'
 import { UserProvider } from '../provider/DataProvider'
 import './Dashboard.css'
+import Cards from '../components/Cards'
+import Activity from '../components/Activity'
 
 // Page dashboard permettant d'afficher les informations générales d'un utilisateur
 // Cette page prend en paramètre l'identifiant de l'utilisateur
@@ -55,7 +56,10 @@ export default function Dashboard() {
                             </h2>
                         </div>
                         <div>
-                            <Scores keyData={data.data.keyData} />
+                            <Cards keyData={data.data.keyData} />
+                        </div>
+                        <div>
+                            <Activity />
                         </div>
                     </div>
                 )}

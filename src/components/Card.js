@@ -1,6 +1,6 @@
-import './Thumb.css'
+import './Card.css'
 
-export default function Thumb({
+export default function Card({
     title,
     details,
     iconBackgroundColor,
@@ -8,7 +8,7 @@ export default function Thumb({
 }) {
     return (
         <>
-            <div className="thumb">
+            <div className="card">
                 <div
                     className="icon-container"
                     style={{
