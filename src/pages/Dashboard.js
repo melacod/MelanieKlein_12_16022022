@@ -6,6 +6,9 @@ import { UserProvider } from '../provider/DataProvider'
 import './Dashboard.css'
 import Cards from '../components/Cards'
 import Activity from '../components/Activity'
+import Session from '../components/Session'
+import Intensity from '../components/Intensity'
+import Score from '../components/Score'
 
 // Page dashboard permettant d'afficher les informations générales d'un utilisateur
 // Cette page prend en paramètre l'identifiant de l'utilisateur
@@ -16,6 +19,8 @@ export default function Dashboard() {
     // Récupération des informations de l'utilisateur
     const { loading, data, error, exception } = UserProvider(userId)
 
+    console.log('user', data)
+
     return (
         <div className="dashboard">
             <SportsBar />
@@ -24,7 +29,7 @@ export default function Dashboard() {
                     Si erreur : affichage du composant Error 
                     Sinon Si chargement en cours : affichage du composant Loader
                     Sinon si aucune données trouvé pour l'utilisateur qui a un identifiant égale à userId : affichage d'un message erreur
-                    Sinon affichage de la location
+                    Sinon affichage du contenu de l'utilisateur
                 */}
                 {error ? (
                     <Error
@@ -55,11 +60,24 @@ export default function Dashboard() {
                                 hier 👏
                             </h2>
                         </div>
-                        <div>
-                            <Cards keyData={data.data.keyData} />
-                        </div>
-                        <div>
-                            <Activity />
+                        <div className="statistics">
+                            <div className="graphs-container">
+                                <div className="graph-activity">
+                                    <Activity userId={userId} />
+                                </div>
+                                <div className="graph-session">
+                                    <Session userId={userId} />
+                                </div>
+                                <div className="graph-intensity">
+                                    <Intensity userId={userId} />
+                                </div>
+                                <div className="graph-score">
+                                    <Score todayScore={data.data.todayScore} />
+                                </div>
+                            </div>
+                            <div className="cards-container">
+                                <Cards keyData={data.data.keyData} />
+                            </div>
                         </div>
                     </div>
                 )}

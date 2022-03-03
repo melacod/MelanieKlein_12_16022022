@@ -12,3 +12,33 @@
 .dashboard .welcome {
     color: red;
 }
+
+.dashboard .statistics {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.dashboard .statistics .graphs-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 80%;
+}
+
+.dashboard .statistics .cards-container {
+    width: 20%;
+}
+
+.dashboard .statistics .graphs-container > * {
+    width: 100%;
+}
+
+.dashboard .statistics .graphs-container .graph-activity {
+    width: 100%;
+}
+
+.dashboard .statistics .graphs-container .graph-score {
+    background-color: #fbfbfb;
+}

@@ -1,24 +1,20 @@
-// Composant permettant d'afficher les actrivités de l'utilisateur
-
 import {
-    Bar,
-    BarChart,
     CartesianGrid,
     Legend,
+    Line,
+    LineChart,
     Tooltip,
     XAxis,
     YAxis,
 } from 'recharts'
-import { UserActivityProvider } from '../provider/DataProvider'
+import { UserSessionsProvider } from '../provider/DataProvider'
 import Error from './Error'
 import Loader from './Loader'
 
-// sous forme de barchart
-export default function Activity({ userId }) {
-    // Récupération des activités de l'utilisateur
-    const { loading, data, error, exception } = UserActivityProvider(userId)
+export default function Session({ userId }) {
+    const { loading, data, error, exception } = UserSessionsProvider(userId)
 
-    console.log('activity', data)
+    console.log('sessions', data)
 
     return (
         <div>
@@ -30,7 +26,7 @@ export default function Activity({ userId }) {
         */}
             {error ? (
                 <Error
-                    message="Chargement impossible des activités de l'utilisateur"
+                    message="Chargement impossible des sessions de l'utilisateur"
                     exception={exception}
                 />
             ) : loading ? (
@@ -38,18 +34,18 @@ export default function Activity({ userId }) {
             ) : !data ? (
                 <Error
                     message={
-                        "Aucune activité trouvée pour l'utilisateur (identifiant: " +
+                        "Aucune session trouvée pour l'utilisateur (identifiant: " +
                         { userId } +
                         ')'
                     }
                 />
             ) : (
-                <BarChart
+                <LineChart
                     width={500}
                     height={300}
                     data={data.data.sessions}
                     margin={{
-                        top: 20,
+                        top: 5,
                         right: 30,
                         left: 20,
                         bottom: 5,
@@ -57,17 +53,21 @@ export default function Activity({ userId }) {
                 >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="day" />
-                    <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
-                    <YAxis
-                        yAxisId="right"
-                        orientation="right"
-                        stroke="#82ca9d"
-                    />
+                    <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar yAxisId="left" dataKey="kilogram" fill="#8884d8" />
-                    <Bar yAxisId="right" dataKey="calories" fill="#82ca9d" />
-                </BarChart>
+                    <Line
+                        type="monotone"
+                        dataKey="pv"
+                        stroke="#8884d8"
+                        activeDot={{ r: 8 }}
+                    />
+                    <Line
+                        type="monotone"
+                        dataKey="sessionLength"
+                        stroke="#82ca9d"
+                    />
+                </LineChart>
             )}
         </div>
     )
