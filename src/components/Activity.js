@@ -109,12 +109,12 @@ export default function Activity({ userId }) {
                         bottom: 23,
                     }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
+                    <CartesianGrid vertical={false} strokeDasharray="2 2" />
                     <XAxis
                         dataKey="dayNumber"
                         axisLine={false}
                         tickLine={false}
-                        padding={15}
+                        tickMargin={10}
                     />
                     <Tooltip content={<CustomTooltip />} offset={50} />
                     <Legend
@@ -131,6 +131,7 @@ export default function Activity({ userId }) {
                         tickCount={4}
                         axisLine={false}
                         tickLine={false}
+                        tickMargin={10}
                     />
                     <Bar
                         yAxisId="ykilogram"
