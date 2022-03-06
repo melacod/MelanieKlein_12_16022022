@@ -41,8 +41,8 @@ export default function Session({ userId }) {
                 />
             ) : (
                 <LineChart
-                    width={500}
-                    height={300}
+                    width={300}
+                    height={258}
                     data={data.data.sessions}
                     margin={{
                         top: 5,
@@ -58,14 +58,8 @@ export default function Session({ userId }) {
                     <Legend />
                     <Line
                         type="monotone"
-                        dataKey="pv"
-                        stroke="#8884d8"
-                        activeDot={{ r: 8 }}
-                    />
-                    <Line
-                        type="monotone"
-                        dataKey="sessionLength"
-                        stroke="#82ca9d"
+                        dataKey="Durée moyenne des sessions"
+                        stroke="#FFFFFF"
                     />
                 </LineChart>
             )}

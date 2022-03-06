@@ -1,0 +1,36 @@
+.activity-legend {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 96%;
+}
+
+.activity-legend .title {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.activity-legend .info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.activity-legend .info div {
+    margin-left: 20px;
+}
+
+.activity-legend .dot {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-bottom: 2px;
+    margin-right: 2px;
+}
+
+.activity-legend .value {
+    font-size: 14px;
+    font-weight: 500;
+}
