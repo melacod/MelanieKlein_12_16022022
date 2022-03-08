@@ -27,7 +27,7 @@ const CustomizedLegend = ({ payload }) => {
                     {payload.map((entry, index) => (
                         <div key={`item-${index}`}>
                             <span
-                                class="dot"
+                                className="dot"
                                 style={{ backgroundColor: entry.color }}
                             ></span>{' '}
                             <span className="value">{entry.value}</span>

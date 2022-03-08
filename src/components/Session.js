@@ -10,11 +10,27 @@ import {
 import { UserSessionsProvider } from '../provider/DataProvider'
 import Error from './Error'
 import Loader from './Loader'
+import './Session.css'
 
 export default function Session({ userId }) {
     const { loading, data, error, exception } = UserSessionsProvider(userId)
 
     console.log('sessions', data)
+
+    // Méthode pour transformer les dates en numéros à partir de 1
+    const transformDates = () => {
+        return data.data.sessions.map((session, indexSession) => {
+            session.dayText = ''
+            if (session.day === 1) session.dayText = 'L'
+            if (session.day === 2) session.dayText = 'M'
+            if (session.day === 3) session.dayText = 'M'
+            if (session.day === 4) session.dayText = 'J'
+            if (session.day === 5) session.dayText = 'V'
+            if (session.day === 6) session.dayText = 'S'
+            if (session.day === 7) session.dayText = 'D'
+            return session
+        })
+    }
 
     return (
         <div>
@@ -43,23 +59,32 @@ export default function Session({ userId }) {
                 <LineChart
                     width={300}
                     height={258}
-                    data={data.data.sessions}
+                    data={transformDates()}
                     margin={{
-                        top: 5,
-                        right: 30,
-                        left: 20,
+                        top: 15,
+                        right: 15,
+                        left: 15,
                         bottom: 5,
                     }}
+                    className="session"
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" />
-                    <YAxis />
+                    <CartesianGrid
+                        vertical={false}
+                        horizontal={false}
+                        strokeDasharray="3 3"
+                    />
+                    <XAxis
+                        dataKey="dayText"
+                        axisLine={false}
+                        tickLine={false}
+                    />
+                    <YAxis axisLine={false} tickLine={false} hide={true} />
                     <Tooltip />
                     <Legend />
                     <Line
                         type="monotone"
-                        dataKey="Durée moyenne des sessions"
-                        stroke="#FFFFFF"
+                        dataKey="sessionLength"
+                        legendType="none"
                     />
                 </LineChart>
             )}

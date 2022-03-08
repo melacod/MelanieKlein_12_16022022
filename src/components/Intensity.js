@@ -9,11 +9,33 @@ import { UserIntensityProvider } from '../provider/DataProvider'
 import Error from './Error'
 import Loader from './Loader'
 
+import './Intensity.css'
+
 export default function Intensity({ userId }) {
     // Récupération des activités de l'utilisateur
     const { loading, data, error, exception } = UserIntensityProvider(userId)
 
     console.log('performance', data)
+
+    // Méthode pour transformer les numéros en Performance
+    const transformCategories = () => {
+        return data.data.data.map((obj) => {
+            obj.categoryText = translateCategory(data.data.kind[obj.kind])
+            return obj
+        })
+    }
+
+    // Méthode pour traduire le nom des catégories
+    const translateCategory = (categoryText) => {
+        if (categoryText === 'cardio') return 'Cardio'
+        if (categoryText === 'energy') return 'Energie'
+        if (categoryText === 'endurance') return 'Endurance'
+        if (categoryText === 'strength') return 'Force'
+        if (categoryText === 'speed') return 'Vitesse'
+        if (categoryText === 'intensity') return 'Intensité'
+
+        return ''
+    }
 
     return (
         <div>
@@ -40,20 +62,23 @@ export default function Intensity({ userId }) {
                 />
             ) : (
                 <RadarChart
+                    className="radarChart"
                     width={200}
                     height={200}
                     outerRadius="80%"
-                    data={data.data.data}
+                    data={transformCategories()}
+                    Fill="white"
+                    fill="white"
                 >
                     <PolarGrid />
-                    <PolarAngleAxis dataKey="kind" />
+                    <PolarAngleAxis dataKey="categoryText" />
                     <PolarRadiusAxis />
                     <Radar
                         name="Mike"
                         dataKey="value"
-                        stroke="#8884d8"
-                        fill="#8884d8"
-                        fillOpacity={0.6}
+                        stroke=""
+                        fill="#FF0101"
+                        fillOpacity={0.7}
                     />
                 </RadarChart>
             )}
