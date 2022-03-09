@@ -3,6 +3,7 @@ import {
     Legend,
     Line,
     LineChart,
+    Rectangle,
     Tooltip,
     XAxis,
     YAxis,
@@ -18,6 +19,21 @@ const CustomTooltip = ({ active, payload }) => {
         return <div className="session-tooltip">{payload[0].value}min</div>
     }
     return null
+}
+
+// Personnalisation du curseur
+// points[0] contient les coordonnées du curseur (x,y)
+const CustomCursor = ({ points }) => {
+    return (
+        <Rectangle
+            x={points[0].x}
+            width={300 - points[0].x}
+            y={0}
+            height={258}
+            fill="black"
+            opacity={0.2}
+        />
+    )
 }
 
 export default function Session({ userId }) {
@@ -88,7 +104,10 @@ export default function Session({ userId }) {
                         stroke="white"
                     />
                     <YAxis axisLine={false} tickLine={false} hide={true} />
-                    <Tooltip content={<CustomTooltip />} />
+                    <Tooltip
+                        content={<CustomTooltip />}
+                        cursor={<CustomCursor />}
+                    />
                     <Legend />
                     <Line
                         type="monotone"
