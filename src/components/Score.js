@@ -5,10 +5,6 @@ export default function Score({ todayScore }) {
         return [{ value: todayScore * 100, fill: 'red' }]
     }
 
-    function MsgScore() {
-        return <h1>{todayScore}</h1>
-    }
-
     return (
         <RadialBarChart
             width={200}

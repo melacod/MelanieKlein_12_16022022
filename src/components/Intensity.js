@@ -4,6 +4,7 @@ import {
     PolarRadiusAxis,
     Radar,
     RadarChart,
+    Text,
 } from 'recharts'
 import { UserIntensityProvider } from '../provider/DataProvider'
 import Error from './Error'
@@ -33,8 +34,20 @@ export default function Intensity({ userId }) {
         if (categoryText === 'strength') return 'Force'
         if (categoryText === 'speed') return 'Vitesse'
         if (categoryText === 'intensity') return 'Intensité'
-
         return ''
+    }
+
+    const addPaddingToLabels = ({ payload, x, y, cx, cy, ...rest }) => {
+        return (
+            <Text
+                {...rest}
+                verticalAnchor="middle"
+                y={y + (y - cy) / 12}
+                x={x + (x - cx) / 12}
+            >
+                {payload.value}
+            </Text>
+        )
     }
 
     return (
@@ -62,19 +75,28 @@ export default function Intensity({ userId }) {
                 />
             ) : (
                 <RadarChart
-                    className="radarChart"
+                    className="intensity"
                     width={300}
-                    height={200}
+                    height={258}
                     outerRadius="80%"
                     data={transformCategories()}
-                    Fill="white"
                     fill="white"
+                    margin={{
+                        top: 20,
+                        right: 20,
+                        left: 20,
+                        bottom: 20,
+                    }}
                 >
                     <PolarGrid />
-                    <PolarAngleAxis dataKey="categoryText" />
-                    <PolarRadiusAxis />
+                    <PolarAngleAxis
+                        dataKey="categoryText"
+                        fontSize={12}
+                        tick={addPaddingToLabels}
+                    />
+                    <PolarRadiusAxis tick={false} axisLine={false} />
                     <Radar
-                        name="Mike"
+                        name="intensity"
                         dataKey="value"
                         stroke=""
                         fill="#FF0101"
