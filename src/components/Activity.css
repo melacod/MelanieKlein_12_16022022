@@ -1,3 +1,9 @@
+.activity {
+    background-color: #fbfbfb;
+    width: 100%;
+    border-radius: 5px;
+}
+
 .activity-legend {
     display: flex;
     flex-direction: row;

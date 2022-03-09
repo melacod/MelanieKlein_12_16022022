@@ -1,3 +1,11 @@
 .session {
     background-color: red;
+    border-radius: 5px;
+}
+
+.session-tooltip {
+    background-color: white;
+    padding: 10px;
+    font-size: 8px;
+    font-weight: 500;
 }

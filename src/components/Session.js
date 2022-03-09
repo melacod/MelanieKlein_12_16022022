@@ -12,6 +12,14 @@ import Error from './Error'
 import Loader from './Loader'
 import './Session.css'
 
+// Personnalisation du tooltip
+const CustomTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+        return <div className="session-tooltip">{payload[0].value}min</div>
+    }
+    return null
+}
+
 export default function Session({ userId }) {
     const { loading, data, error, exception } = UserSessionsProvider(userId)
 
@@ -19,7 +27,7 @@ export default function Session({ userId }) {
 
     // Méthode pour transformer les dates en numéros à partir de 1
     const transformDates = () => {
-        return data.data.sessions.map((session, indexSession) => {
+        return data.data.sessions.map((session) => {
             session.dayText = ''
             if (session.day === 1) session.dayText = 'L'
             if (session.day === 2) session.dayText = 'M'
@@ -77,14 +85,17 @@ export default function Session({ userId }) {
                         dataKey="dayText"
                         axisLine={false}
                         tickLine={false}
+                        stroke="white"
                     />
                     <YAxis axisLine={false} tickLine={false} hide={true} />
-                    <Tooltip />
+                    <Tooltip content={<CustomTooltip />} />
                     <Legend />
                     <Line
                         type="monotone"
                         dataKey="sessionLength"
                         legendType="none"
+                        stroke="white"
+                        dot={false}
                     />
                 </LineChart>
             )}

@@ -47,7 +47,7 @@ export default function Dashboard() {
                         }
                     />
                 ) : (
-                    <div>
+                    <>
                         <div>
                             <h1>
                                 Bonjour{' '}
@@ -79,7 +79,7 @@ export default function Dashboard() {
                                 <Cards keyData={data.data.keyData} />
                             </div>
                         </div>
-                    </div>
+                    </>
                 )}
             </div>
         </div>

@@ -63,7 +63,7 @@ export default function Intensity({ userId }) {
             ) : (
                 <RadarChart
                     className="radarChart"
-                    width={200}
+                    width={300}
                     height={200}
                     outerRadius="80%"
                     data={transformCategories()}

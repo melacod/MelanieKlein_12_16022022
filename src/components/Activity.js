@@ -4,7 +4,6 @@ import {
     Bar,
     BarChart,
     CartesianGrid,
-    Label,
     Legend,
     Tooltip,
     XAxis,
@@ -19,7 +18,6 @@ import './Activity.css'
 // Personnalisation de la légende
 const CustomizedLegend = ({ payload }) => {
     if (payload) {
-        console.log(payload)
         return (
             <div className="activity-legend">
                 <div className="title">Activité quotidienne</div>
@@ -75,7 +73,7 @@ export default function Activity({ userId }) {
     }
 
     return (
-        <div>
+        <div className="activity">
             {/* 
             Si erreur : affichage du composant Error 
             Sinon Si chargement en cours : affichage du composant Loader
@@ -99,7 +97,7 @@ export default function Activity({ userId }) {
                 />
             ) : (
                 <BarChart
-                    width={1000}
+                    width={950}
                     height={300}
                     data={transformDates()}
                     margin={{
@@ -108,6 +106,7 @@ export default function Activity({ userId }) {
                         left: 32,
                         bottom: 23,
                     }}
+                    barGap={8}
                 >
                     <CartesianGrid vertical={false} strokeDasharray="2 2" />
                     <XAxis
