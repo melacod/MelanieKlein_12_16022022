@@ -51,8 +51,6 @@ const CustomizedLegend = ({ payload }) => {
 export default function Session({ userId }) {
     const { loading, data, error, exception } = UserSessionsProvider(userId)
 
-    console.log('sessions', data)
-
     // Méthode pour transformer les dates en numéros à partir de 1
     const transformDates = () => {
         return data.data.sessions.map((session) => {

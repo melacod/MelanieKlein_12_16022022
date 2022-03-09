@@ -16,8 +16,6 @@ export default function Intensity({ userId }) {
     // Récupération des activités de l'utilisateur
     const { loading, data, error, exception } = UserIntensityProvider(userId)
 
-    console.log('performance', data)
-
     // Méthode pour transformer les numéros en Performance
     const transformCategories = () => {
         return data.data.data.map((obj) => {

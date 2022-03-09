@@ -19,8 +19,6 @@ export default function Dashboard() {
     // Récupération des informations de l'utilisateur
     const { loading, data, error, exception } = UserProvider(userId)
 
-    console.log('user', data)
-
     return (
         <div className="dashboard">
             <SportsBar />

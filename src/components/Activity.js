@@ -62,8 +62,6 @@ export default function Activity({ userId }) {
     // Récupération des activités de l'utilisateur
     const { loading, data, error, exception } = UserActivityProvider(userId)
 
-    console.log('activity', data)
-
     // Méthode pour transformer les dates en numéros à partir de 1
     const transformDates = () => {
         return data.data.sessions.map((session, indexSession) => {
