@@ -9,3 +9,11 @@
     font-size: 12px;
     font-weight: 500;
 }
+
+.sessions-legend {
+    font-size: 15px;
+    width: 150px;
+    color: white;
+    opacity: 0.5;
+    padding: 10px;
+}

@@ -36,6 +36,18 @@ const CustomCursor = ({ points }) => {
     )
 }
 
+// Personnalisation de la légende
+const CustomizedLegend = ({ payload }) => {
+    if (payload) {
+        return (
+            <div className="sessions-legend">
+                <div className="title">Durée moyenne des sessions</div>
+            </div>
+        )
+    }
+    return null
+}
+
 export default function Session({ userId }) {
     const { loading, data, error, exception } = UserSessionsProvider(userId)
 
@@ -80,43 +92,51 @@ export default function Session({ userId }) {
                     }
                 />
             ) : (
-                <LineChart
-                    width={300}
-                    height={258}
-                    data={transformDates()}
-                    margin={{
-                        top: 15,
-                        right: 15,
-                        left: 15,
-                        bottom: 5,
-                    }}
-                    className="session"
-                >
-                    <CartesianGrid
-                        vertical={false}
-                        horizontal={false}
-                        strokeDasharray="3 3"
-                    />
-                    <XAxis
-                        dataKey="dayText"
-                        axisLine={false}
-                        tickLine={false}
-                        stroke="white"
-                    />
-                    <YAxis axisLine={false} tickLine={false} hide={true} />
-                    <Tooltip
-                        content={<CustomTooltip />}
-                        cursor={<CustomCursor />}
-                    />
-                    <Legend />
-                    <Line
-                        type="monotone"
-                        dataKey="sessionLength"
-                        legendType="none"
-                        stroke="white"
-                        dot={false}
-                    />
-                </LineChart>
+                <div>
+                    <LineChart
+                        width={300}
+                        height={258}
+                        data={transformDates()}
+                        margin={{
+                            top: 15,
+                            right: 15,
+                            left: 15,
+                            bottom: 5,
+                        }}
+                        className="session"
+                    >
+                        <CartesianGrid
+                            vertical={false}
+                            horizontal={false}
+                            strokeDasharray="3 3"
+                        />
+                        <XAxis
+                            dataKey="dayText"
+                            axisLine={false}
+                            tickLine={false}
+                            stroke="white"
+                            dy={5}
+                        />
+                        <YAxis axisLine={false} tickLine={false} hide={true} />
+                        <Tooltip
+                            content={<CustomTooltip />}
+                            cursor={<CustomCursor />}
+                        />
+                        <Legend
+                            verticalAlign="top"
+                            height={50}
+                            content={<CustomizedLegend />}
+                        />
+                        <Line
+                            type="monotone"
+                            dataKey="sessionLength"
+                            legendType="none"
+                            dot={false}
+                            strokeWidth={2}
+                            stroke="rgba(255, 255, 255, 0.6)"
+                        />
+                    </LineChart>
+                </div>
             )}
         </div>
     )
