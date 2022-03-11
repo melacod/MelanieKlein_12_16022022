@@ -1,9 +1,14 @@
 import './Icon.css'
 
-export default function IconApple({
-    color = '#FDCC0C',
-    onClickFunction = undefined,
-}) {
+/**
+ * Icon SVG
+ * @compenent
+ * @param {string} color icon color
+ * @param {function} onClickFunction function triggered when click on the icon
+ * @returns computed SVG icon
+ */
+
+function IconApple({ color = '#FDCC0C', onClickFunction = undefined }) {
     return (
         <svg
             className="icon icon-apple"
@@ -29,3 +34,5 @@ export default function IconApple({
         </svg>
     )
 }
+
+export default IconApple

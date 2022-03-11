@@ -1,9 +1,12 @@
 import './Icon.css'
 
-export default function IconDumbell({
-    color = '#FF0101',
-    onClickFunction = undefined,
-}) {
+/**
+ * Icon SVG
+ * @param {string} color icon color
+ * @param {function} onClickFunction function triggered when click on the icon
+ */
+
+function IconDumbell({ color = '#FF0101', onClickFunction = undefined }) {
     return (
         <svg
             onClick={onClickFunction}
@@ -21,3 +24,5 @@ export default function IconDumbell({
         </svg>
     )
 }
+
+export default IconDumbell

@@ -1,0 +1,150 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> assets/IconBike.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">SportSee components</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Components</h3><ul><li><a href="Activity.html">Activity</a></li><li><a href="ActivityLegend.html">ActivityLegend</a></li><li><a href="ActivityTooltip.html">ActivityTooltip</a></li><li><a href="App.html">App</a></li></ul><h3>Global</h3><ul><li><a href="global.html#IconApple">IconApple</a></li><li><a href="global.html#IconBike">IconBike</a></li><li><a href="global.html#IconChicken">IconChicken</a></li><li><a href="global.html#IconDumbell">IconDumbell</a></li><li><a href="global.html#IconFlame">IconFlame</a></li><li><a href="global.html#IconHamburger">IconHamburger</a></li><li><a href="global.html#IconSwimming">IconSwimming</a></li><li><a href="global.html#IconYoga">IconYoga</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>assets/IconBike.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import './Icon.css'
+
+/**
+ * Icon SVG
+ * @compenent
+ * @param {string} color icon color
+ * @param {function} onClickFunction function triggered when click on the icon
+ */
+
+function IconBike({ color = '#FF0101', onClickFunction = undefined }) {
+    return (
+        &lt;svg
+            onClick={onClickFunction}
+            width="38"
+            height="32"
+            viewBox="0 0 38 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="icon icon-bike"
+        >
+            &lt;path
+                d="M24.1951 6.2439C25.9122 6.2439 27.3171 4.83902 27.3171 3.12195C27.3171 1.40488 25.9122 0 24.1951 0C22.478 0 21.0732 1.40488 21.0732 3.12195C21.0732 4.83902 22.478 6.2439 24.1951 6.2439ZM7.80488 16.3902C3.43415 16.3902 0 19.8244 0 24.1951C0 28.5659 3.43415 32 7.80488 32C12.1756 32 15.6098 28.5659 15.6098 24.1951C15.6098 19.8244 12.1756 16.3902 7.80488 16.3902ZM7.80488 29.6585C4.83902 29.6585 2.34146 27.161 2.34146 24.1951C2.34146 21.2293 4.83902 18.7317 7.80488 18.7317C10.7707 18.7317 13.2683 21.2293 13.2683 24.1951C13.2683 27.161 10.7707 29.6585 7.80488 29.6585ZM16.8585 14.0488L20.6049 10.3024L21.8537 11.5512C23.8829 13.5805 26.5366 14.8293 29.8146 14.8293V11.7073C27.4732 11.7073 25.6 10.7707 24.1951 9.36585L21.2293 6.4C20.4488 5.77561 19.6683 5.46341 18.7317 5.46341C17.7951 5.46341 17.0146 5.77561 16.5463 6.4L12.1756 10.7707C11.5512 11.3951 11.239 12.1756 11.239 12.9561C11.239 13.8927 11.5512 14.6732 12.1756 15.1415L17.1707 19.5122V27.3171H20.2927V17.639L16.8585 14.0488ZM29.6585 16.3902C25.2878 16.3902 21.8537 19.8244 21.8537 24.1951C21.8537 28.5659 25.2878 32 29.6585 32C34.0293 32 37.4634 28.5659 37.4634 24.1951C37.4634 19.8244 34.0293 16.3902 29.6585 16.3902ZM29.6585 29.6585C26.6927 29.6585 24.1951 27.161 24.1951 24.1951C24.1951 21.2293 26.6927 18.7317 29.6585 18.7317C32.6244 18.7317 35.1219 21.2293 35.1219 24.1951C35.1219 27.161 32.6244 29.6585 29.6585 29.6585Z"
+                fill={color}
+            />
+        &lt;/svg>
+    )
+}
+
+export default IconBike
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

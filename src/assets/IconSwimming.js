@@ -1,9 +1,13 @@
 import './Icon.css'
 
-export default function IconSwimming({
-    color = '#FF0101',
-    onClickFunction = undefined,
-}) {
+/**
+ * Icon SVG
+ * @compenent
+ * @param {string} color icon color
+ * @param {function} onClickFunction function triggered when click on the icon
+ */
+
+function IconSwimming({ color = '#FF0101', onClickFunction = undefined }) {
     return (
         <svg
             onClick={onClickFunction}
@@ -24,3 +28,5 @@ export default function IconSwimming({
         </svg>
     )
 }
+
+export default IconSwimming

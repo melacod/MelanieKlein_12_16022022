@@ -1,9 +1,13 @@
 import './Icon.css'
 
-export default function IconHamburger({
-    color = '#FD5181',
-    onClickFunction = undefined,
-}) {
+/**
+ * Icon SVG
+ * @compenent
+ * @param {string} color icon color
+ * @param {function} onClickFunction function triggered when click on the icon
+ */
+
+function IconHamburger({ color = '#FD5181', onClickFunction = undefined }) {
     return (
         <svg
             className="icon icon-hamburger"
@@ -31,3 +35,5 @@ export default function IconHamburger({
         </svg>
     )
 }
+
+export default IconHamburger

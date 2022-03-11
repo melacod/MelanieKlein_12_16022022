@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> components/Activity.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">SportSee components</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Components</h3><ul><li><a href="Activity.html">Activity</a></li><li><a href="ActivityLegend.html">ActivityLegend</a></li><li><a href="ActivityTooltip.html">ActivityTooltip</a></li><li><a href="App.html">App</a></li></ul><h3>Global</h3><ul><li><a href="global.html#IconApple">IconApple</a></li><li><a href="global.html#IconBike">IconBike</a></li><li><a href="global.html#IconChicken">IconChicken</a></li><li><a href="global.html#IconDumbell">IconDumbell</a></li><li><a href="global.html#IconFlame">IconFlame</a></li><li><a href="global.html#IconHamburger">IconHamburger</a></li><li><a href="global.html#IconSwimming">IconSwimming</a></li><li><a href="global.html#IconYoga">IconYoga</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>components/Activity.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Composant permettant d'afficher les activités de l'utilisateur
+
+import {
+    Bar,
+    BarChart,
+    CartesianGrid,
+    Legend,
+    Tooltip,
+    XAxis,
+    YAxis,
+} from 'recharts'
+import { UserActivityProvider } from '../provider/DataProvider'
+import Error from './Error'
+import Loader from './Loader'
+
+import './Activity.css'
+
+/**
+ * Customized legend for the activity chart
+ * @component
+ * @param {object} payload payload recharts legend data object
+ * @returns HTML activity legend
+ */
+const ActivityLegend = ({ payload }) => {
+    if (payload) {
+        return (
+            &lt;div className="activity-legend">
+                &lt;div className="title">Activité quotidienne&lt;/div>
+                &lt;div className="info">
+                    {payload.map((entry, index) => (
+                        &lt;div key={`item-${index}`}>
+                            &lt;span
+                                className="dot"
+                                style={{ backgroundColor: entry.color }}
+                            >&lt;/span>{' '}
+                            &lt;span className="value">{entry.value}&lt;/span>
+                        &lt;/div>
+                    ))}
+                &lt;/div>
+            &lt;/div>
+        )
+    }
+    return null
+}
+
+/**
+ * Customized tooltip for the activity chart
+ * @component
+ * @param {boolean} active whether tooltip is active or not
+ * @param {object} payload payload recharts tooltip data object
+ * @returns HTML activity tooltip
+ */
+const ActivityTooltip = ({ active, payload }) => {
+    if (active &amp;&amp; payload &amp;&amp; payload.length) {
+        return (
+            &lt;div
+                style={{
+                    color: 'white',
+                    backgroundColor: 'red',
+                    padding: '5px',
+                }}
+            >
+                &lt;p>{`${payload[0].value}kg`}&lt;/p>
+                &lt;p>{`${payload[1].value}Kcal`}&lt;/p>
+            &lt;/div>
+        )
+    }
+    return null
+}
+
+/**
+ * User activity chart
+ * @component
+ * @param {int} userId user identifier
+ * @returns HTML activity chart
+ */
+function Activity({ userId }) {
+    // Récupération des activités de l'utilisateur
+    const { loading, data, error, exception } = UserActivityProvider(userId)
+
+    // Méthode pour transformer les dates en numéros à partir de 1
+    const transformDates = () => {
+        return data.data.sessions.map((session, indexSession) => {
+            session.dayNumber = indexSession + 1
+            return session
+        })
+    }
+
+    return (
+        &lt;div className="activity">
+            {/* 
+            Si erreur : affichage du composant Error 
+            Sinon Si chargement en cours : affichage du composant Loader
+            Sinon si aucune données trouvé pour l'utilisateur qui a un identifiant égale à userId : affichage d'un message erreur
+            Sinon affichage du contenu de l'utilisateur
+        */}
+            {error ? (
+                &lt;Error
+                    message="Chargement impossible des activités de l'utilisateur"
+                    exception={exception}
+                />
+            ) : loading ? (
+                &lt;Loader />
+            ) : !data ? (
+                &lt;Error
+                    message={
+                        "Aucune activité trouvée pour l'utilisateur (identifiant: " +
+                        { userId } +
+                        ')'
+                    }
+                />
+            ) : (
+                &lt;BarChart
+                    width={950}
+                    height={300}
+                    data={transformDates()}
+                    margin={{
+                        top: 23,
+                        right: 26,
+                        left: 32,
+                        bottom: 23,
+                    }}
+                    barGap={8}
+                >
+                    &lt;CartesianGrid vertical={false} strokeDasharray="2 2" />
+                    &lt;XAxis
+                        dataKey="dayNumber"
+                        axisLine={false}
+                        tickLine={false}
+                        tickMargin={10}
+                    />
+                    &lt;Tooltip content={&lt;ActivityTooltip />} offset={50} />
+                    &lt;Legend
+                        verticalAlign="top"
+                        height={50}
+                        content={&lt;ActivityLegend />}
+                    />
+                    &lt;YAxis
+                        yAxisId="ykilogram"
+                        orientation="right"
+                        stroke="#9B9EAC"
+                        type="number"
+                        domain={['dataMin - 1', 'dataMax + 1']}
+                        tickCount={4}
+                        axisLine={false}
+                        tickLine={false}
+                        tickMargin={10}
+                    />
+                    &lt;Bar
+                        yAxisId="ykilogram"
+                        dataKey="kilogram"
+                        fill="#282D30"
+                        barSize={10}
+                        legendType="circle"
+                        name="Poids (kg)"
+                        radius={[50, 50, 0, 0]}
+                    />
+                    &lt;YAxis yAxisId="ycalories" hide />
+                    &lt;Bar
+                        yAxisId="ycalories"
+                        dataKey="calories"
+                        fill="#E60000"
+                        barSize={10}
+                        legendType="circle"
+                        name="Calories brûlées (kCal)"
+                        radius={[50, 50, 0, 0]}
+                    />
+                &lt;/BarChart>
+            )}
+        &lt;/div>
+    )
+}
+
+export default Activity
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

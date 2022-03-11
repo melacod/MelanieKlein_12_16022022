@@ -1,9 +1,13 @@
 import './Icon.css'
 
-export default function IconFlame({
-    color = '#FF0000',
-    onClickFunction = undefined,
-}) {
+/**
+ * Icon SVG
+ * @compenent
+ * @param {string} color icon color
+ * @param {function} onClickFunction function triggered when click on the icon
+ */
+
+function IconFlame({ color = '#FF0000', onClickFunction = undefined }) {
     return (
         <svg
             className="icon icon-flame"
@@ -21,3 +25,5 @@ export default function IconFlame({
         </svg>
     )
 }
+
+export default IconFlame

@@ -1,4 +1,4 @@
-// Composant permettant d'afficher les actrivités de l'utilisateur
+// Composant permettant d'afficher les activités de l'utilisateur
 
 import {
     Bar,
@@ -15,8 +15,13 @@ import Loader from './Loader'
 
 import './Activity.css'
 
-// Personnalisation de la légende
-const CustomizedLegend = ({ payload }) => {
+/**
+ * Customized legend for the activity chart
+ * @component
+ * @param {object} payload payload recharts legend data object
+ * @returns HTML activity legend
+ */
+const ActivityLegend = ({ payload }) => {
     if (payload) {
         return (
             <div className="activity-legend">
@@ -38,8 +43,14 @@ const CustomizedLegend = ({ payload }) => {
     return null
 }
 
-// Personnalisation du tooltip
-const CustomTooltip = ({ active, payload }) => {
+/**
+ * Customized tooltip for the activity chart
+ * @component
+ * @param {boolean} active whether tooltip is active or not
+ * @param {object} payload payload recharts tooltip data object
+ * @returns HTML activity tooltip
+ */
+const ActivityTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
         return (
             <div
@@ -57,8 +68,13 @@ const CustomTooltip = ({ active, payload }) => {
     return null
 }
 
-// sous forme de barchart
-export default function Activity({ userId }) {
+/**
+ * User activity chart
+ * @component
+ * @param {int} userId user identifier
+ * @returns HTML activity chart
+ */
+function Activity({ userId }) {
     // Récupération des activités de l'utilisateur
     const { loading, data, error, exception } = UserActivityProvider(userId)
 
@@ -113,11 +129,11 @@ export default function Activity({ userId }) {
                         tickLine={false}
                         tickMargin={10}
                     />
-                    <Tooltip content={<CustomTooltip />} offset={50} />
+                    <Tooltip content={<ActivityTooltip />} offset={50} />
                     <Legend
                         verticalAlign="top"
                         height={50}
-                        content={<CustomizedLegend />}
+                        content={<ActivityLegend />}
                     />
                     <YAxis
                         yAxisId="ykilogram"
@@ -154,3 +170,5 @@ export default function Activity({ userId }) {
         </div>
     )
 }
+
+export default Activity

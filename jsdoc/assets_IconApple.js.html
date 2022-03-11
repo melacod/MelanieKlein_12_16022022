@@ -1,0 +1,159 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> assets/IconApple.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">SportSee components</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Components</h3><ul><li><a href="Activity.html">Activity</a></li><li><a href="ActivityLegend.html">ActivityLegend</a></li><li><a href="ActivityTooltip.html">ActivityTooltip</a></li><li><a href="App.html">App</a></li></ul><h3>Global</h3><ul><li><a href="global.html#IconApple">IconApple</a></li><li><a href="global.html#IconBike">IconBike</a></li><li><a href="global.html#IconChicken">IconChicken</a></li><li><a href="global.html#IconDumbell">IconDumbell</a></li><li><a href="global.html#IconFlame">IconFlame</a></li><li><a href="global.html#IconHamburger">IconHamburger</a></li><li><a href="global.html#IconSwimming">IconSwimming</a></li><li><a href="global.html#IconYoga">IconYoga</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>assets/IconApple.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import './Icon.css'
+
+/**
+ * Icon SVG
+ * @compenent
+ * @param {string} color icon color
+ * @param {function} onClickFunction function triggered when click on the icon
+ * @returns computed SVG icon
+ */
+
+function IconApple({ color = '#FDCC0C', onClickFunction = undefined }) {
+    return (
+        &lt;svg
+            className="icon icon-apple"
+            onClick={onClickFunction}
+            width="18"
+            height="20"
+            viewBox="0 0 18 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            &lt;path
+                d="M16.6575 15.1C16.225 16.0575 16.0187 16.485 15.4612 17.3313C14.685 18.5125 13.5912 19.985 12.235 19.9975C11.03 20.0088 10.72 19.2138 9.08499 19.2225C7.44999 19.2313 7.10749 20.0113 5.90249 20C4.54624 19.9875 3.50999 18.6588 2.73249 17.4763C0.562489 14.1713 0.334989 10.2938 1.67374 8.2325C2.62499 6.76625 4.12624 5.91 5.53874 5.91C6.97624 5.91 7.87874 6.6975 9.06749 6.6975C10.22 6.6975 10.9225 5.90875 12.585 5.90875C13.8412 5.90875 15.1725 6.5925 16.12 7.77375C13.0137 9.4775 13.5187 13.9138 16.6575 15.1Z"
+                fill={color}
+            />
+            &lt;path
+                d="M1.84285 15.1C2.27535 16.0575 2.4816 16.485 3.0391 17.3313C3.81535 18.5125 4.9091 19.985 6.26535 19.9975C7.47035 20.0088 7.78035 19.2138 9.41535 19.2225C11.0503 19.2313 11.3928 20.0113 12.5978 20C13.9541 19.9875 14.9903 18.6588 15.7678 17.4763C17.9378 14.1713 18.1653 10.2938 16.8266 8.2325C15.8753 6.76625 14.3741 5.91 12.9616 5.91C11.5241 5.91 10.6216 6.6975 9.43285 6.6975C8.28035 6.6975 7.57785 5.90875 5.91535 5.90875C4.6591 5.90875 3.32785 6.5925 2.38035 7.77375C5.4866 9.4775 4.9816 13.9138 1.84285 15.1Z"
+                fill={color}
+            />
+            &lt;path
+                d="M12.005 3.37375C12.6875 2.49875 13.205 1.2625 13.0162 0C11.9025 0.07625 10.6 0.785 9.83873 1.70875C9.14873 2.5475 8.57873 3.79125 8.79998 5C10.0162 5.0375 11.2737 4.31125 12.005 3.37375Z"
+                fill={color}
+            />
+        &lt;/svg>
+    )
+}
+
+export default IconApple
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

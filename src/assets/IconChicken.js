@@ -1,9 +1,12 @@
 import './Icon.css'
 
-export default function IconChicken({
-    color = '#4AB8FF',
-    onClickFunction = undefined,
-}) {
+/**
+ * Icon SVG
+ * @param {string} color icon color
+ * @param {function} onClickFunction function triggered when click on the icon
+ */
+
+function IconChicken({ color = '#4AB8FF', onClickFunction = undefined }) {
     return (
         <svg
             className="icon icon-chicken"
@@ -21,3 +24,5 @@ export default function IconChicken({
         </svg>
     )
 }
+
+export default IconChicken
