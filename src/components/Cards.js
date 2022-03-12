@@ -5,7 +5,7 @@ import IconChicken from '../assets/IconChicken'
 import IconHamburger from '../assets/IconHamburger'
 import Card from './Card'
 import './Cards.css'
-import { NumberWithCommas } from '../utils/numbers'
+import NumberWithCommas from '../utils/numbers'
 
 /**
  * User key data cards

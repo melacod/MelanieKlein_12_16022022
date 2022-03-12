@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> services/SessionService.js</title>
+  <title> utils/hooks.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>services/SessionService.js</h1>
+                    <h1>utils/hooks.js</h1>
                 </header>
                 
 
@@ -89,46 +89,52 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { useFetch } from '../utils/hooks'
-import BackendUrl from './BackendUrl'
+            <pre class="prettyprint source linenums"><code>import { useEffect, useState } from 'react'
 
 /**
- * Get user session data from backend and transform data received
- * @function SessionService
- * @param {number} userId user identifier
- * @returns the transformed session user data
- * @category Services
+ * Hooks to fetch data and transform received data
+ * @function useFetch
+ * @param {string} url url to fecth data from
+ * @param {function} transformData function used to transform received data
+ * @returns the transformed recevied data
+ * @category Utils
  */
-const SessionService = (userId) => {
-    return useFetch(
-        BackendUrl + '/user/' + userId + '/average-sessions',
-        SessionTransform
-    )
-}
+export function useFetch(url, transformData) {
+    const [data, setData] = useState({})
 
-/**
- * Transform session data received from backend.
- * Add a dayText property that contains the french first letter of the day.
- * @function SessionTransform
- * @param {number} data session data received from backend
- * @returns session data transformed
- * @category Services
- */
-const SessionTransform = (data) => {
-    return data.data.sessions.map((session) => {
-        session.dayText = ''
-        if (session.day === 1) session.dayText = 'L'
-        if (session.day === 2) session.dayText = 'M'
-        if (session.day === 3) session.dayText = 'M'
-        if (session.day === 4) session.dayText = 'J'
-        if (session.day === 5) session.dayText = 'V'
-        if (session.day === 6) session.dayText = 'S'
-        if (session.day === 7) session.dayText = 'D'
-        return session
-    })
-}
+    const [loading, setLoading] = useState(true)
 
-export default SessionService
+    const [error, setError] = useState(false)
+    const [exception, setException] = useState('')
+
+    useEffect(() => {
+        if (!url) return
+        setLoading(true)
+
+        async function fetchData() {
+            try {
+                // Simulate data loading to show loader
+                // await new Promise((r) => setTimeout(r, 2 * 1000))
+                const response = await fetch(url)
+                let receivedData = await response.json()
+                if (transformData) {
+                    receivedData = transformData(receivedData)
+                }
+                setData(receivedData)
+            } catch (err) {
+                //console.log(err)
+                setError(true)
+                setException(err)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchData()
+    }, [url, transformData])
+
+    return { loading, data, error, exception }
+}
 </code></pre>
         </article>
     </section>
