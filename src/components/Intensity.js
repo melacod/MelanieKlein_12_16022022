@@ -92,7 +92,7 @@ Intensity.propTypes = {
     /**
      * User identifier
      */
-    userId: PropTypes.number.isRequired,
+    userId: PropTypes.string.isRequired,
 }
 
 export default Intensity

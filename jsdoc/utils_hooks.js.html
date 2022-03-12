@@ -114,7 +114,7 @@ export function useFetch(url, transformData) {
         async function fetchData() {
             try {
                 // Simulate data loading to show loader
-                // await new Promise((r) => setTimeout(r, 2 * 1000))
+                await new Promise((r) => setTimeout(r, 1 * 1000))
                 const response = await fetch(url)
                 let receivedData = await response.json()
                 if (transformData) {

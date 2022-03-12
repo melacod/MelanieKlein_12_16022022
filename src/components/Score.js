@@ -25,7 +25,7 @@ ScoreLegend.propTypes = {
     /**
      * Rechart legend payload
      */
-    payload: PropTypes.object.isRequired,
+    payload: PropTypes.array,
 }
 
 /**
@@ -64,15 +64,15 @@ ScoreLabel.propTypes = {
     /**
      * X label coordinate
      */
-    cx: PropTypes.number.isRequired,
+    cx: PropTypes.number,
     /**
      * Y label coordinate
      */
-    cy: PropTypes.number.isRequired,
+    cy: PropTypes.number,
     /**
      * Label value
      */
-    value: PropTypes.number.isRequired,
+    value: PropTypes.number,
 }
 
 /**

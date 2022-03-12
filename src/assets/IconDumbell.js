@@ -30,7 +30,7 @@ IconDumbell.propTypes = {
     /**
      * Color of the icon
      */
-    color: PropTypes.string.isRequired,
+    color: PropTypes.string,
     /**
      * Function to execute when click on the icon
      */

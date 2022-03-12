@@ -45,7 +45,7 @@ ActivityLegend.propTypes = {
     /**
      * Rechart legend payload
      */
-    payload: PropTypes.object.isRequired,
+    payload: PropTypes.array,
 }
 
 /**
@@ -75,11 +75,11 @@ ActivityTooltip.propTypes = {
     /**
      * Whether tooltip is active or not
      */
-    active: PropTypes.bool.isRequired,
+    active: PropTypes.bool,
     /**
      * Rechart tooltip payload
      */
-    payload: PropTypes.object.isRequired,
+    payload: PropTypes.array,
 }
 
 /**
@@ -174,7 +174,7 @@ Activity.propTypes = {
     /**
      * User identifier
      */
-    userId: PropTypes.number.isRequired,
+    userId: PropTypes.string.isRequired,
 }
 
 export default Activity

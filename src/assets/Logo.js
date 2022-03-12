@@ -82,7 +82,7 @@ Logo.propTypes = {
     /**
      * Color of the icon
      */
-    color: PropTypes.string.isRequired,
+    color: PropTypes.string,
 }
 
 export default Logo

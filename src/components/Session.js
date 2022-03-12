@@ -30,11 +30,11 @@ SessionTooltip.propTypes = {
     /**
      * Whether tooltip is active or not
      */
-    active: PropTypes.bool.isRequired,
+    active: PropTypes.bool,
     /**
      * Rechart tooltip payload
      */
-    payload: PropTypes.object.isRequired,
+    payload: PropTypes.array,
 }
 
 /**
@@ -60,7 +60,7 @@ SessionCursor.propTypes = {
     /**
      * Array containing point coordinates
      */
-    points: PropTypes.array.isRequired,
+    points: PropTypes.array,
 }
 
 /**
@@ -83,7 +83,7 @@ SessionLegend.propTypes = {
     /**
      * Rechart legend payload
      */
-    payload: PropTypes.object.isRequired,
+    payload: PropTypes.array,
 }
 
 /**
@@ -166,7 +166,7 @@ Session.propTypes = {
     /**
      * User identifier
      */
-    userId: PropTypes.number.isRequired,
+    userId: PropTypes.string.isRequired,
 }
 
 export default Session
