@@ -3,9 +3,12 @@ import Header from './layout/Header'
 import Dashboard from './pages/Dashboard'
 import ErrorPage from './pages/ErrorPage'
 
-// Composant contenant les différentes routes de l'application
-// Le composant header est sur toutes les pages
-export default function AppRouter() {
+/**
+ * Application routes
+ * @component
+ * @category Common
+ */
+const AppRouter = () => {
     return (
         <Router>
             <Header />
@@ -18,3 +21,5 @@ export default function AppRouter() {
         </Router>
     )
 }
+
+export default AppRouter

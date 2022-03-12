@@ -1,9 +1,11 @@
+import PropTypes from 'prop-types'
+
 /**
- * Icon SVG
- * @param {color} icon color
- * @returns computed SVG logo
+ * SportSee logo SVG icon
+ * @component
+ * @category Common
  */
-export default function Logo({ color = '#FF0101' }) {
+const Logo = ({ color = '#FF0101' }) => {
     return (
         <svg
             width="178"
@@ -75,3 +77,12 @@ export default function Logo({ color = '#FF0101' }) {
         </svg>
     )
 }
+
+Logo.propTypes = {
+    /**
+     * Color of the icon
+     */
+    color: PropTypes.string.isRequired,
+}
+
+export default Logo

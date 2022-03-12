@@ -1,13 +1,12 @@
 import './Icon.css'
+import PropTypes from 'prop-types'
 
 /**
- * Icon SVG
- * @compenent
- * @param {string} color icon color
- * @param {function} onClickFunction function triggered when click on the icon
+ * Hamburger SVG icon
+ * @component
+ * @category Icons
  */
-
-function IconHamburger({ color = '#FD5181', onClickFunction = undefined }) {
+const IconHamburger = ({ color = '#FD5181', onClickFunction = undefined }) => {
     return (
         <svg
             className="icon icon-hamburger"
@@ -34,6 +33,17 @@ function IconHamburger({ color = '#FD5181', onClickFunction = undefined }) {
             />
         </svg>
     )
+}
+
+IconHamburger.propTypes = {
+    /**
+     * Color of the icon
+     */
+    color: PropTypes.string.isRequired,
+    /**
+     * Function to execute when click on the icon
+     */
+    onClickFunction: PropTypes.func,
 }
 
 export default IconHamburger

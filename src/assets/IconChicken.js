@@ -1,12 +1,12 @@
 import './Icon.css'
+import PropTypes from 'prop-types'
 
 /**
- * Icon SVG
- * @param {string} color icon color
- * @param {function} onClickFunction function triggered when click on the icon
+ * Chicken SVG icon
+ * @component
+ * @category Icons
  */
-
-function IconChicken({ color = '#4AB8FF', onClickFunction = undefined }) {
+const IconChicken = ({ color = '#4AB8FF', onClickFunction = undefined }) => {
     return (
         <svg
             className="icon icon-chicken"
@@ -23,6 +23,17 @@ function IconChicken({ color = '#4AB8FF', onClickFunction = undefined }) {
             />
         </svg>
     )
+}
+
+IconChicken.propTypes = {
+    /**
+     * Color of the icon
+     */
+    color: PropTypes.string.isRequired,
+    /**
+     * Function to execute when click on the icon
+     */
+    onClickFunction: PropTypes.func,
 }
 
 export default IconChicken

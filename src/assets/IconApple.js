@@ -1,14 +1,12 @@
 import './Icon.css'
+import PropTypes from 'prop-types'
 
 /**
- * Icon SVG
- * @compenent
- * @param {string} color icon color
- * @param {function} onClickFunction function triggered when click on the icon
- * @returns computed SVG icon
+ * Apple SVG icon
+ * @component
+ * @category Icons
  */
-
-function IconApple({ color = '#FDCC0C', onClickFunction = undefined }) {
+const IconApple = ({ color = '#FDCC0C', onClickFunction = undefined }) => {
     return (
         <svg
             className="icon icon-apple"
@@ -33,6 +31,17 @@ function IconApple({ color = '#FDCC0C', onClickFunction = undefined }) {
             />
         </svg>
     )
+}
+
+IconApple.propTypes = {
+    /**
+     * Color of the icon
+     */
+    color: PropTypes.string.isRequired,
+    /**
+     * Function to execute when click on the icon
+     */
+    onClickFunction: PropTypes.func,
 }
 
 export default IconApple

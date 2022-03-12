@@ -3,10 +3,11 @@ import AppRouter from './AppRouter.js'
 import './App.css'
 
 /**
- * Composant principal de l'application
+ * Main application component
  * @component
+ * @category Common
  */
-function App() {
+const App = () => {
     return (
         <div className="app">
             <AppRouter />

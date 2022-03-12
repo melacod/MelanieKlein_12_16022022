@@ -1,13 +1,12 @@
 import './Icon.css'
+import PropTypes from 'prop-types'
 
 /**
- * Icon SVG
- * @compenent
- * @param {string} color icon color
- * @param {function} onClickFunction function triggered when click on the icon
+ * Flame SVG icon
+ * @component
+ * @category Icons
  */
-
-function IconFlame({ color = '#FF0000', onClickFunction = undefined }) {
+const IconFlame = ({ color = '#FF0000', onClickFunction = undefined }) => {
     return (
         <svg
             className="icon icon-flame"
@@ -24,6 +23,17 @@ function IconFlame({ color = '#FF0000', onClickFunction = undefined }) {
             />
         </svg>
     )
+}
+
+IconFlame.propTypes = {
+    /**
+     * Color of the icon
+     */
+    color: PropTypes.string.isRequired,
+    /**
+     * Function to execute when click on the icon
+     */
+    onClickFunction: PropTypes.func,
 }
 
 export default IconFlame

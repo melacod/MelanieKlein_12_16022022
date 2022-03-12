@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import {
     CartesianGrid,
     Legend,
@@ -8,22 +9,41 @@ import {
     XAxis,
     YAxis,
 } from 'recharts'
-import { UserSessionsProvider } from '../provider/DataProvider'
+import SessionService from '../services/SessionService'
 import Error from './Error'
 import Loader from './Loader'
 import './Session.css'
 
-// Personnalisation du tooltip
-const CustomTooltip = ({ active, payload }) => {
+/**
+ * Customized tooltip for the session chart
+ * @component
+ * @category Dashboard
+ */
+const SessionTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
         return <div className="session-tooltip">{payload[0].value}min</div>
     }
     return null
 }
 
-// Personnalisation du curseur
-// points[0] contient les coordonnées du curseur (x,y)
-const CustomCursor = ({ points }) => {
+SessionTooltip.propTypes = {
+    /**
+     * Whether tooltip is active or not
+     */
+    active: PropTypes.bool.isRequired,
+    /**
+     * Rechart tooltip payload
+     */
+    payload: PropTypes.object.isRequired,
+}
+
+/**
+ * Customized cursor for the session chart
+ * @component
+ * @category Dashboard
+ */
+const SessionCursor = ({ points }) => {
+    // points[0] contains cursor coordinates (x,y)
     return (
         <Rectangle
             x={points[0].x}
@@ -36,8 +56,19 @@ const CustomCursor = ({ points }) => {
     )
 }
 
-// Personnalisation de la légende
-const CustomizedLegend = ({ payload }) => {
+SessionCursor.propTypes = {
+    /**
+     * Array containing point coordinates
+     */
+    points: PropTypes.array.isRequired,
+}
+
+/**
+ * Customized legend for the session chart
+ * @component
+ * @category Dashboard
+ */
+const SessionLegend = ({ payload }) => {
     if (payload) {
         return (
             <div className="sessions-legend">
@@ -48,32 +79,23 @@ const CustomizedLegend = ({ payload }) => {
     return null
 }
 
-export default function Session({ userId }) {
-    const { loading, data, error, exception } = UserSessionsProvider(userId)
+SessionLegend.propTypes = {
+    /**
+     * Rechart legend payload
+     */
+    payload: PropTypes.object.isRequired,
+}
 
-    // Méthode pour transformer les dates en numéros à partir de 1
-    const transformDates = () => {
-        return data.data.sessions.map((session) => {
-            session.dayText = ''
-            if (session.day === 1) session.dayText = 'L'
-            if (session.day === 2) session.dayText = 'M'
-            if (session.day === 3) session.dayText = 'M'
-            if (session.day === 4) session.dayText = 'J'
-            if (session.day === 5) session.dayText = 'V'
-            if (session.day === 6) session.dayText = 'S'
-            if (session.day === 7) session.dayText = 'D'
-            return session
-        })
-    }
+/**
+ * Session chart
+ * @component
+ * @category Dashboard
+ */
+const Session = ({ userId }) => {
+    const { loading, data, error, exception } = SessionService(userId)
 
     return (
         <div>
-            {/* 
-            Si erreur : affichage du composant Error 
-            Sinon Si chargement en cours : affichage du composant Loader
-            Sinon si aucune données trouvé pour l'utilisateur qui a un identifiant égale à userId : affichage d'un message erreur
-            Sinon affichage du contenu de l'utilisateur
-        */}
             {error ? (
                 <Error
                     message="Chargement impossible des sessions de l'utilisateur"
@@ -94,7 +116,7 @@ export default function Session({ userId }) {
                     <LineChart
                         width={300}
                         height={258}
-                        data={transformDates()}
+                        data={data}
                         margin={{
                             top: 15,
                             right: 15,
@@ -117,13 +139,13 @@ export default function Session({ userId }) {
                         />
                         <YAxis axisLine={false} tickLine={false} hide={true} />
                         <Tooltip
-                            content={<CustomTooltip />}
-                            cursor={<CustomCursor />}
+                            content={<SessionTooltip />}
+                            cursor={<SessionCursor />}
                         />
                         <Legend
                             verticalAlign="top"
                             height={50}
-                            content={<CustomizedLegend />}
+                            content={<SessionLegend />}
                         />
                         <Line
                             type="monotone"
@@ -139,3 +161,12 @@ export default function Session({ userId }) {
         </div>
     )
 }
+
+Session.propTypes = {
+    /**
+     * User identifier
+     */
+    userId: PropTypes.number.isRequired,
+}
+
+export default Session

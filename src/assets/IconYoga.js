@@ -1,12 +1,11 @@
 import './Icon.css'
+import PropTypes from 'prop-types'
 
 /**
- * Icon SVG
- * @compenent
- * @param {string} color icon color
- * @param {function} onClickFunction function triggered when click on the icon
+ * Yoga SVG icon
+ * @component
+ * @category Icons
  */
-
 function IconYoga({ color = '#FF0101', onClickFunction = undefined }) {
     return (
         <svg
@@ -27,6 +26,17 @@ function IconYoga({ color = '#FF0101', onClickFunction = undefined }) {
             />
         </svg>
     )
+}
+
+IconYoga.propTypes = {
+    /**
+     * Color of the icon
+     */
+    color: PropTypes.string.isRequired,
+    /**
+     * Function to execute when click on the icon
+     */
+    onClickFunction: PropTypes.func,
 }
 
 export default IconYoga

@@ -1,5 +1,4 @@
-// Composant permettant d'afficher les activités de l'utilisateur
-
+import PropTypes from 'prop-types'
 import {
     Bar,
     BarChart,
@@ -9,17 +8,16 @@ import {
     XAxis,
     YAxis,
 } from 'recharts'
-import { UserActivityProvider } from '../provider/DataProvider'
 import Error from './Error'
 import Loader from './Loader'
 
 import './Activity.css'
+import ActivityService from '../services/ActivityService'
 
 /**
  * Customized legend for the activity chart
  * @component
- * @param {object} payload payload recharts legend data object
- * @returns HTML activity legend
+ * @category Dashboard
  */
 const ActivityLegend = ({ payload }) => {
     if (payload) {
@@ -43,12 +41,17 @@ const ActivityLegend = ({ payload }) => {
     return null
 }
 
+ActivityLegend.propTypes = {
+    /**
+     * Rechart legend payload
+     */
+    payload: PropTypes.object.isRequired,
+}
+
 /**
  * Customized tooltip for the activity chart
  * @component
- * @param {boolean} active whether tooltip is active or not
- * @param {object} payload payload recharts tooltip data object
- * @returns HTML activity tooltip
+ * @category Dashboard
  */
 const ActivityTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
@@ -68,32 +71,28 @@ const ActivityTooltip = ({ active, payload }) => {
     return null
 }
 
-/**
- * User activity chart
- * @component
- * @param {int} userId user identifier
- * @returns HTML activity chart
- */
-function Activity({ userId }) {
-    // Récupération des activités de l'utilisateur
-    const { loading, data, error, exception } = UserActivityProvider(userId)
+ActivityTooltip.propTypes = {
+    /**
+     * Whether tooltip is active or not
+     */
+    active: PropTypes.bool.isRequired,
+    /**
+     * Rechart tooltip payload
+     */
+    payload: PropTypes.object.isRequired,
+}
 
-    // Méthode pour transformer les dates en numéros à partir de 1
-    const transformDates = () => {
-        return data.data.sessions.map((session, indexSession) => {
-            session.dayNumber = indexSession + 1
-            return session
-        })
-    }
+/**
+ * Activity chart
+ * @component
+ * @category Dashboard
+ */
+const Activity = ({ userId }) => {
+    // Get activity data for user
+    const { loading, data, error, exception } = ActivityService(userId)
 
     return (
         <div className="activity">
-            {/* 
-            Si erreur : affichage du composant Error 
-            Sinon Si chargement en cours : affichage du composant Loader
-            Sinon si aucune données trouvé pour l'utilisateur qui a un identifiant égale à userId : affichage d'un message erreur
-            Sinon affichage du contenu de l'utilisateur
-        */}
             {error ? (
                 <Error
                     message="Chargement impossible des activités de l'utilisateur"
@@ -113,7 +112,7 @@ function Activity({ userId }) {
                 <BarChart
                     width={950}
                     height={300}
-                    data={transformDates()}
+                    data={data}
                     margin={{
                         top: 23,
                         right: 26,
@@ -169,6 +168,13 @@ function Activity({ userId }) {
             )}
         </div>
     )
+}
+
+Activity.propTypes = {
+    /**
+     * User identifier
+     */
+    userId: PropTypes.number.isRequired,
 }
 
 export default Activity

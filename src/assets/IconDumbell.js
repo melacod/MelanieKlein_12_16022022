@@ -1,12 +1,13 @@
 import './Icon.css'
 
-/**
- * Icon SVG
- * @param {string} color icon color
- * @param {function} onClickFunction function triggered when click on the icon
- */
+import PropTypes from 'prop-types'
 
-function IconDumbell({ color = '#FF0101', onClickFunction = undefined }) {
+/**
+ * Dumbell SVG icon
+ * @component
+ * @category Icons
+ */
+const IconDumbell = ({ color = '#FF0101', onClickFunction = undefined }) => {
     return (
         <svg
             onClick={onClickFunction}
@@ -23,6 +24,17 @@ function IconDumbell({ color = '#FF0101', onClickFunction = undefined }) {
             />
         </svg>
     )
+}
+
+IconDumbell.propTypes = {
+    /**
+     * Color of the icon
+     */
+    color: PropTypes.string.isRequired,
+    /**
+     * Function to execute when click on the icon
+     */
+    onClickFunction: PropTypes.func,
 }
 
 export default IconDumbell

@@ -2,33 +2,31 @@ import { useParams } from 'react-router-dom'
 import SportsBar from '../layout/SportsBar'
 import Error from '../components/Error'
 import Loader from '../components/Loader'
-import { UserProvider } from '../provider/DataProvider'
-import './Dashboard.css'
 import Cards from '../components/Cards'
 import Activity from '../components/Activity'
 import Session from '../components/Session'
 import Intensity from '../components/Intensity'
 import Score from '../components/Score'
+import UserService from '../services/UserService'
 
-// Page dashboard permettant d'afficher les informations générales d'un utilisateur
-// Cette page prend en paramètre l'identifiant de l'utilisateur
-export default function Dashboard() {
-    // Récupération de l'identifiant de l'utilisateur dans les paramètres de l'URL
+import './Dashboard.css'
+
+/**
+ * Dashboard page
+ * @component
+ * @category Dashboard
+ */
+const Dashboard = () => {
+    // Get user identifier from URL parameter
     const { userId } = useParams()
 
-    // Récupération des informations de l'utilisateur
-    const { loading, data, error, exception } = UserProvider(userId)
+    // Get user data for user
+    const { loading, data, error, exception } = UserService(userId)
 
     return (
         <div className="dashboard">
             <SportsBar />
             <div className="content">
-                {/* 
-                    Si erreur : affichage du composant Error 
-                    Sinon Si chargement en cours : affichage du composant Loader
-                    Sinon si aucune données trouvé pour l'utilisateur qui a un identifiant égale à userId : affichage d'un message erreur
-                    Sinon affichage du contenu de l'utilisateur
-                */}
                 {error ? (
                     <Error
                         message="Chargement impossible des données de l'utilisateur"
@@ -83,3 +81,5 @@ export default function Dashboard() {
         </div>
     )
 }
+
+export default Dashboard

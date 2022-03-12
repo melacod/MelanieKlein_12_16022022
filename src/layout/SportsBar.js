@@ -5,7 +5,12 @@ import IconYoga from '../assets/IconYoga'
 
 import './SportsBar.css'
 
-export default function SportsBar() {
+/**
+ * Page sport bar
+ * @component
+ * @category Common
+ */
+const SportsBar = () => {
     return (
         <div className="sports-bar">
             <ul>
@@ -26,3 +31,5 @@ export default function SportsBar() {
         </div>
     )
 }
+
+export default SportsBar

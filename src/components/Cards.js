@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import IconFlame from '../assets/IconFlame'
 import IconApple from '../assets/IconApple'
 import IconChicken from '../assets/IconChicken'
@@ -6,7 +7,12 @@ import Card from './Card'
 import './Cards.css'
 import { NumberWithCommas } from '../utils/numbers'
 
-export default function Cards({ keyData }) {
+/**
+ * User key data cards
+ * @component
+ * @category Dashboard
+ */
+const Cards = ({ keyData }) => {
     return (
         <div className="cardScores">
             <Card
@@ -40,3 +46,12 @@ export default function Cards({ keyData }) {
         </div>
     )
 }
+
+Cards.propTypes = {
+    /**
+     * User key data
+     */
+    keyData: PropTypes.object.isRequired,
+}
+
+export default Cards

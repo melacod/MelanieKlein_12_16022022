@@ -1,7 +1,11 @@
 import './Loader.css'
 
-// Composant permettant d'afficher le spinner pendant le chargement des données
-export default function Loader() {
+/**
+ * Loader / Spinner
+ * @component
+ * @category Common
+ */
+const Loader = () => {
     return (
         <div className="loader">
             <div></div>
@@ -11,3 +15,5 @@ export default function Loader() {
         </div>
     )
 }
+
+export default Loader

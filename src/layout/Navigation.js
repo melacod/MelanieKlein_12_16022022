@@ -2,7 +2,12 @@ import { NavLink } from 'react-router-dom'
 
 import './Navigation.css'
 
-export default function Navigation() {
+/**
+ * Page navigation
+ * @component
+ * @category Common
+ */
+const Navigation = () => {
     return (
         <nav>
             <ul>
@@ -22,3 +27,5 @@ export default function Navigation() {
         </nav>
     )
 }
+
+export default Navigation

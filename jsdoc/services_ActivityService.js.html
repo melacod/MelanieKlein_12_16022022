@@ -1,0 +1,154 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> services/ActivityService.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">SportSee components</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>Common</h2><h3>Components</h3><ul><li><a href="App.html">App</a></li><li><a href="AppRouter.html">AppRouter</a></li><li><a href="Error.html">Error</a></li><li><a href="ErrorPage.html">ErrorPage</a></li><li><a href="Header.html">Header</a></li><li><a href="Loader.html">Loader</a></li><li><a href="Logo.html">Logo</a></li><li><a href="Navigation.html">Navigation</a></li><li><a href="SportsBar.html">SportsBar</a></li></ul></div><div class="category"><h2>Dashboard</h2><h3>Components</h3><ul><li><a href="Activity.html">Activity</a></li><li><a href="ActivityLegend.html">ActivityLegend</a></li><li><a href="ActivityTooltip.html">ActivityTooltip</a></li><li><a href="Card.html">Card</a></li><li><a href="Cards.html">Cards</a></li><li><a href="Dashboard.html">Dashboard</a></li><li><a href="Intensity.html">Intensity</a></li><li><a href="Score.html">Score</a></li><li><a href="ScoreLabel.html">ScoreLabel</a></li><li><a href="ScoreLegend.html">ScoreLegend</a></li><li><a href="Session.html">Session</a></li><li><a href="SessionCursor.html">SessionCursor</a></li><li><a href="SessionLegend.html">SessionLegend</a></li><li><a href="SessionTooltip.html">SessionTooltip</a></li></ul></div><div class="category"><h2>Icons</h2><h3>Components</h3><ul><li><a href="IconApple.html">IconApple</a></li><li><a href="IconBike.html">IconBike</a></li><li><a href="IconChicken.html">IconChicken</a></li><li><a href="IconDumbell.html">IconDumbell</a></li><li><a href="IconFlame.html">IconFlame</a></li><li><a href="IconHamburger.html">IconHamburger</a></li><li><a href="IconSwimming.html">IconSwimming</a></li><li><a href="IconYoga.html">IconYoga</a></li></ul></div><div class="category"><h2>Services</h2><h3>Global</h3><ul><li><a href="global.html#ActivityService">ActivityService</a></li><li><a href="global.html#ActivityTransform">ActivityTransform</a></li><li><a href="global.html#BackendUrl">BackendUrl</a></li><li><a href="global.html#IntensityService">IntensityService</a></li><li><a href="global.html#IntensityTransform">IntensityTransform</a></li><li><a href="global.html#IntensityTranslate">IntensityTranslate</a></li><li><a href="global.html#SessionService">SessionService</a></li><li><a href="global.html#SessionTransform">SessionTransform</a></li><li><a href="global.html#UserService">UserService</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>services/ActivityService.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useFetch } from '../utils/hooks'
+import BackendUrl from './BackendUrl'
+
+/**
+ * Get user activity data from backend and transform data received
+ * @function ActivityService
+ * @param {number} userId user identifier
+ * @returns the transformed activity user data
+ * @category Services
+ */
+const ActivityService = (userId) => {
+    return useFetch(
+        BackendUrl + '/user/' + userId + '/activity',
+        ActivityTransform
+    )
+}
+
+/**
+ * Transform activity data received from backend.
+ * Add a dayNumber property that match array position + 1
+ * @function ActivityTransform
+ * @param {number} data activity data received from backend
+ * @returns activity data transformed
+ * @category Services
+ */
+const ActivityTransform = (data) => {
+    return data.data.sessions.map((session, indexSession) => {
+        session.dayNumber = indexSession + 1
+        return session
+    })
+}
+
+export default ActivityService
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+
+</body>
+</html>

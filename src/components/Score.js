@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import {
     Legend,
     PolarAngleAxis,
@@ -8,16 +9,31 @@ import {
 
 import './Score.css'
 
-// Personnalisation de la légende
-const CustomizedLegend = ({ payload }) => {
+/**
+ * Customized legend for the score chart
+ * @component
+ * @category Dashboard
+ */
+const ScoreLegend = ({ payload }) => {
     if (payload) {
         return <div className="score-legend">Score</div>
     }
     return null
 }
 
-// Personnalisation du label
-const CustomizedLabel = ({ cx, cy, value }) => {
+ScoreLegend.propTypes = {
+    /**
+     * Rechart legend payload
+     */
+    payload: PropTypes.object.isRequired,
+}
+
+/**
+ * Customized label for the score chart
+ * @component
+ * @category Dashboard
+ */
+const ScoreLabel = ({ cx, cy, value }) => {
     return (
         <>
             <Text
@@ -44,7 +60,27 @@ const CustomizedLabel = ({ cx, cy, value }) => {
     )
 }
 
-export default function Score({ todayScore }) {
+ScoreLabel.propTypes = {
+    /**
+     * X label coordinate
+     */
+    cx: PropTypes.number.isRequired,
+    /**
+     * Y label coordinate
+     */
+    cy: PropTypes.number.isRequired,
+    /**
+     * Label value
+     */
+    value: PropTypes.number.isRequired,
+}
+
+/**
+ * Score chart
+ * @component
+ * @category Dashboard
+ */
+const Score = ({ todayScore }) => {
     const getData = () => {
         return [{ value: todayScore * 100, fill: 'red' }]
     }
@@ -71,14 +107,12 @@ export default function Score({ todayScore }) {
                 verticalAlign="top"
                 align="left"
                 height={50}
-                content={<CustomizedLegend />}
+                content={<ScoreLegend />}
             />
 
-            <RadialBar
-                angleAxisId={0}
-                dataKey="value"
-                label={<CustomizedLabel />}
-            />
+            <RadialBar angleAxisId={0} dataKey="value" label={<ScoreLabel />} />
         </RadialBarChart>
     )
 }
+
+export default Score

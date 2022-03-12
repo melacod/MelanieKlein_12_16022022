@@ -1,7 +1,12 @@
+import PropTypes from 'prop-types'
 import './Error.css'
 
-// Composant permettant d'afficher un message d'erreur provenant d'une exception
-export default function Error({ message, exception }) {
+/**
+ * Error message
+ * @component
+ * @category Common
+ */
+const Error = ({ message, exception }) => {
     return (
         <div className="error">
             <div>
@@ -12,3 +17,16 @@ export default function Error({ message, exception }) {
         </div>
     )
 }
+
+Error.propTypes = {
+    /**
+     * Error message
+     */
+    message: PropTypes.string.isRequired,
+    /**
+     * Exception
+     */
+    exception: PropTypes.object,
+}
+
+export default Error

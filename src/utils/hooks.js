@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 //  - Le chargement des données via l'état loading
 //  - Les données renvoyées via l'état data
 //  - Les erreurs lors de l'exécution vua les états error et exception
-export function useFetch(url) {
+export function useFetch(url, transformData) {
     const [data, setData] = useState({})
 
     const [loading, setLoading] = useState(true)
@@ -22,7 +22,10 @@ export function useFetch(url) {
                 // Cela permet de tester le comportement de l'état loading
                 await new Promise((r) => setTimeout(r, 2 * 1000))
                 const response = await fetch(url)
-                const receivedData = await response.json()
+                let receivedData = await response.json()
+                if (transformData) {
+                    receivedData = transformData(receivedData)
+                }
                 setData(receivedData)
             } catch (err) {
                 //console.log(err)
@@ -34,7 +37,7 @@ export function useFetch(url) {
         }
 
         fetchData()
-    }, [url])
+    }, [url, transformData])
 
     return { loading, data, error, exception }
 }

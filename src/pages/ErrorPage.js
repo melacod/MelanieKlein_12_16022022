@@ -1,6 +1,9 @@
-// Composant page permettant d'afficher un message d'erreur
-// lorsque l'utilisateur se trouve sur une page inexistante dans les routes
-export default function ErrorPage() {
+/**
+ * Error page when URL is not found
+ * @component
+ * @category Common
+ */
+const ErrorPage = () => {
     return (
         <div className="error">
             <div className="code">404</div>
@@ -10,3 +13,5 @@ export default function ErrorPage() {
         </div>
     )
 }
+
+export default ErrorPage

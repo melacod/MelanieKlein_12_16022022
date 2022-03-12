@@ -1,12 +1,16 @@
 import { Link } from 'react-router-dom'
 
 import Logo from '../assets/Logo.js'
-
 import Navigation from './Navigation.js'
 
 import './Header.css'
 
-export default function Header() {
+/**
+ * Page header
+ * @component
+ * @category Common
+ */
+const Header = () => {
     return (
         <header>
             <div className="logo">
@@ -18,3 +22,5 @@ export default function Header() {
         </header>
     )
 }
+
+export default Header
