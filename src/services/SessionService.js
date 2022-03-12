@@ -19,7 +19,7 @@ const SessionService = (userId) => {
  * Transform session data received from backend.
  * Add a dayText property that contains the french first letter of the day.
  * @function SessionTransform
- * @param {number} data session data received from backend
+ * @param {object} data session data received from backend
  * @returns session data transformed
  * @category Services
  */

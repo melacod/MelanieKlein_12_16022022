@@ -23,8 +23,6 @@ const Dashboard = () => {
     // Get user data for user
     const { loading, data, error, exception } = UserService(userId)
 
-    console.log(data)
-
     return (
         <div className="dashboard">
             <SportsBar />

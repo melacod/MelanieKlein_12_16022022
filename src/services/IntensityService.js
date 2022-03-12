@@ -19,7 +19,7 @@ const IntensityService = (userId) => {
  * Transform intensity data received from backend.
  * Add a kindText property that contains the french kind text from the kind id.
  * @function IntensityTransform
- * @param {number} data intensity data received from backend
+ * @param {object} data intensity data received from backend
  * @returns intensity data transformed
  * @category Services
  */

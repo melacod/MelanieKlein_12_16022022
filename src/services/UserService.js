@@ -9,7 +9,20 @@ import BackendUrl from './BackendUrl'
  * @category Services
  */
 const UserService = (userId) => {
-    return useFetch(BackendUrl + '/user/' + userId)
+    return useFetch(BackendUrl + '/user/' + userId, UserTransform)
+}
+
+/**
+ * Transform user data received from backend.
+ * Add a todayScore property from score property if does not exists.
+ * @function UserTransform
+ * @param {object} data user data received from backend
+ * @returns user data transformed
+ * @category Services
+ */
+const UserTransform = (data) => {
+    if (!data.data.todayScore) data.data.todayScore = data.data.score
+    return data
 }
 
 export default UserService

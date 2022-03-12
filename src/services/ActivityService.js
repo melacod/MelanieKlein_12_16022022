@@ -19,7 +19,7 @@ const ActivityService = (userId) => {
  * Transform activity data received from backend.
  * Add a dayNumber property that match array position + 1
  * @function ActivityTransform
- * @param {number} data activity data received from backend
+ * @param {object} data activity data received from backend
  * @returns activity data transformed
  * @category Services
  */
