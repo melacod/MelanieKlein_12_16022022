@@ -11,7 +11,8 @@ import BackendUrl from './BackendUrl'
 const IntensityService = (userId) => {
     return useFetch(
         BackendUrl + '/user/' + userId + '/performance',
-        IntensityTransform
+        IntensityTransform,
+        IntensityMock
     )
 }
 
@@ -31,6 +32,7 @@ const IntensityTransform = (data) => {
         return obj
     })
 }
+
 /**
  * Translate english kind text to french kind text.
  * If no translation found, return english kind text.
@@ -47,6 +49,57 @@ const IntensityTranslate = (kindText) => {
     if (kindText === 'speed') return 'Vitesse'
     if (kindText === 'intensity') return 'Intensité'
     return kindText
+}
+
+/**
+ * Mock intensity data
+ * @kind constant
+ * @category Mock
+ */
+const IntensityMock = {
+    data: {
+        userId: 18,
+        kind: {
+            1: 'cardio',
+            2: 'energy',
+            3: 'endurance',
+            4: 'strength',
+            5: 'speed',
+            6: 'intensity',
+        },
+        data: [
+            {
+                value: 100,
+                kind: 1,
+                kindText: 'Cardio',
+            },
+            {
+                value: 240,
+                kind: 2,
+                kindText: 'Energie',
+            },
+            {
+                value: 80,
+                kind: 3,
+                kindText: 'Endurance',
+            },
+            {
+                value: 80,
+                kind: 4,
+                kindText: 'Force',
+            },
+            {
+                value: 220,
+                kind: 5,
+                kindText: 'Vitesse',
+            },
+            {
+                value: 110,
+                kind: 6,
+                kindText: 'Intensité',
+            },
+        ],
+    },
 }
 
 export default IntensityService
