@@ -87,7 +87,7 @@ const Score = ({ todayScore }) => {
 
     return (
         <RadialBarChart
-            width={300}
+            width={285}
             height={258}
             innerRadius="80%"
             barSize={12}
