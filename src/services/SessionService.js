@@ -25,7 +25,6 @@ const SessionService = (userId) => {
  * @category Services
  */
 const SessionTransform = (data) => {
-    console.log(data)
     return data.data.sessions.map((session) => {
         session.dayText = ''
         if (session.day === 1) session.dayText = 'L'

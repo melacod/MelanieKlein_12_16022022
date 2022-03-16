@@ -1,0 +1,25 @@
+.message_Home {
+    color: white;
+    padding: 25px;
+    font-size: xx-large;
+    text-align: center;
+    margin-top: 75px;
+}
+
+.input_Home {
+    height: 25px;
+    width: 90px;
+}
+
+.btn_Home {
+    color: black;
+    font-weight: 800;
+    font-size: large;
+}
+
+.form_Home {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}

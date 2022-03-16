@@ -25,4 +25,27 @@ const UserTransform = (data) => {
     return data
 }
 
+/**
+ * Mock score data
+ * @kind constant
+ * @category Mock
+ */
+const ScoreMock = {
+    data: {
+        id: 12,
+        userInfos: {
+            firstName: 'Karl',
+            lastName: 'Dovineau',
+            age: 31,
+        },
+        todayScore: 0.12,
+        keyData: {
+            calorieCount: 1930,
+            proteinCount: 155,
+            carbohydrateCount: 290,
+            lipidCount: 50,
+        },
+    },
+}
+
 export default UserService
