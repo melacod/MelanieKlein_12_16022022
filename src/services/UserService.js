@@ -9,7 +9,7 @@ import BackendUrl from './BackendUrl'
  * @category Services
  */
 const UserService = (userId) => {
-    return useFetch(BackendUrl + '/user/' + userId, UserTransform)
+    return useFetch(BackendUrl + '/user/' + userId, UserTransform, UserMock)
 }
 
 /**
@@ -26,11 +26,11 @@ const UserTransform = (data) => {
 }
 
 /**
- * Mock score data
+ * Mock user data
  * @kind constant
  * @category Mock
  */
-const ScoreMock = {
+const UserMock = {
     data: {
         id: 12,
         userInfos: {

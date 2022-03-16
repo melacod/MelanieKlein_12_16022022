@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react'
  */
 export function useFetch(url, transformData, mockData) {
     // Whether to use mock data or not
-    const useMock = true
+    const useMock = false
 
     const [data, setData] = useState({})
 
