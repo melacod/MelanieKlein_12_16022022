@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react'
  */
 export function useFetch(url, transformData, mockData) {
     // Whether to use mock data or not
-    const useMock = false
+    const useMock = true
 
     const [data, setData] = useState({})
 
@@ -52,7 +52,7 @@ export function useFetch(url, transformData, mockData) {
         }
 
         fetchData()
-    }, [url, transformData])
+    }, [url, transformData, mockData, useMock])
 
     return { loading, data, error, exception }
 }
