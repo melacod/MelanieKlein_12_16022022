@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> components/Intensity.js</title>
+  <title> pages/Home.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>components/Intensity.js</h1>
+                    <h1>pages/Home.js</h1>
                 </header>
                 
 
@@ -89,104 +89,48 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import PropTypes from 'prop-types'
-import {
-    PolarAngleAxis,
-    PolarGrid,
-    PolarRadiusAxis,
-    Radar,
-    RadarChart,
-    Text,
-} from 'recharts'
-import IntensityService from '../services/IntensityService'
-import Error from './Error'
-import Loader from './Loader'
-
-import './Intensity.css'
+            <pre class="prettyprint source linenums"><code>import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import './Home.css'
 
 /**
- * Intensity chart
+ * Home page
  * @component
- * @category Dashboard
+ * @category Home
  */
-const Intensity = ({ userId }) => {
-    // Get intensity data for user
-    const { loading, data, error, exception } = IntensityService(userId)
+const Home = () => {
+    const navigate = useNavigate()
 
-    // Add padding to labels to make it more readable
-    const addPaddingToLabels = ({ payload, x, y, cx, cy, ...rest }) => {
-        return (
-            &lt;Text
-                {...rest}
-                verticalAnchor="middle"
-                y={y + (y - cy) / 12}
-                x={x + (x - cx) / 12}
-            >
-                {payload.value}
-            &lt;/Text>
-        )
+    const [id, setId] = useState('')
+
+    const onClickFunction = () => {
+        navigate('/dashboard/' + id)
+    }
+
+    const onChangeFunction = (event) => {
+        setId(event.target.value)
     }
 
     return (
         &lt;div>
-            {error ? (
-                &lt;Error
-                    message="Chargement impossible des performances de l'utilisateur"
-                    exception={exception}
-                />
-            ) : loading ? (
-                &lt;Loader />
-            ) : !data ? (
-                &lt;Error
-                    message={
-                        "Aucune performance trouvée pour l'utilisateur (identifiant: " +
-                        { userId } +
-                        ')'
-                    }
-                />
-            ) : (
-                &lt;RadarChart
-                    className="intensity"
-                    width={300}
-                    height={258}
-                    outerRadius="80%"
-                    data={data}
-                    fill="white"
-                    margin={{
-                        top: 20,
-                        right: 20,
-                        left: 20,
-                        bottom: 20,
-                    }}
-                >
-                    &lt;PolarGrid />
-                    &lt;PolarAngleAxis
-                        dataKey="kindText"
-                        fontSize={12}
-                        tick={addPaddingToLabels}
-                    />
-                    &lt;PolarRadiusAxis tick={false} axisLine={false} />
-                    &lt;Radar
-                        name="intensity"
-                        dataKey="value"
-                        stroke=""
-                        fill="#FF0101"
-                        fillOpacity={0.7}
-                    />
-                &lt;/RadarChart>
-            )}
+            &lt;div className="message_Home">Bienvenue sur SportSee !&lt;/div>
+            &lt;label>Identifiant&lt;/label>
+            &lt;div className="form_Home">
+                &lt;input
+                    placeholder="Identifiant"
+                    value={id}
+                    onChange={onChangeFunction}
+                    className="input_Home"
+                >&lt;/input>
+                &lt;button onClick={onClickFunction} className="btn_Home">
+                    Ok
+                &lt;/button>
+            &lt;/div>
         &lt;/div>
     )
 }
 
-Intensity.propTypes = {
-    /**
-     * User identifier
-     */
-    userId: PropTypes.string.isRequired,
-}
-
-export default Intensity
+export default Home
 </code></pre>
         </article>
     </section>
