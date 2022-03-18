@@ -38,12 +38,12 @@ const UserMock = {
             lastName: 'Dovineau',
             age: 31,
         },
-        todayScore: 0.12,
+        todayScore: 0.4,
         keyData: {
-            calorieCount: 1930,
-            proteinCount: 155,
-            carbohydrateCount: 290,
-            lipidCount: 50,
+            calorieCount: 2820,
+            proteinCount: 450,
+            carbohydrateCount: 350,
+            lipidCount: 250,
         },
     },
 }

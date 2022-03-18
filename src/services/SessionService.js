@@ -49,37 +49,37 @@ const SessionMock = {
         sessions: [
             {
                 day: 1,
-                sessionLength: 30,
+                sessionLength: 40,
                 dayText: 'L',
             },
             {
                 day: 2,
-                sessionLength: 23,
-                dayText: 'M',
-            },
-            {
-                day: 3,
                 sessionLength: 45,
                 dayText: 'M',
             },
             {
+                day: 3,
+                sessionLength: 30,
+                dayText: 'M',
+            },
+            {
                 day: 4,
-                sessionLength: 50,
+                sessionLength: 20,
                 dayText: 'J',
             },
             {
                 day: 5,
-                sessionLength: 0,
+                sessionLength: 20,
                 dayText: 'V',
             },
             {
                 day: 6,
-                sessionLength: 0,
+                sessionLength: 40,
                 dayText: 'S',
             },
             {
                 day: 7,
-                sessionLength: 60,
+                sessionLength: 30,
                 dayText: 'D',
             },
         ],

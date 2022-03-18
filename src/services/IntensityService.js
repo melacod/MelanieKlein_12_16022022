@@ -69,17 +69,17 @@ const IntensityMock = {
         },
         data: [
             {
-                value: 100,
+                value: 300,
                 kind: 1,
                 kindText: 'Cardio',
             },
             {
-                value: 240,
+                value: 280,
                 kind: 2,
                 kindText: 'Energie',
             },
             {
-                value: 80,
+                value: 120,
                 kind: 3,
                 kindText: 'Endurance',
             },
@@ -89,12 +89,12 @@ const IntensityMock = {
                 kindText: 'Force',
             },
             {
-                value: 220,
+                value: 100,
                 kind: 5,
                 kindText: 'Vitesse',
             },
             {
-                value: 110,
+                value: 290,
                 kind: 6,
                 kindText: 'Intensité',
             },
