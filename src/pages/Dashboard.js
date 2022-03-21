@@ -38,7 +38,7 @@ const Dashboard = () => {
                     <Error
                         message={
                             "Aucune données trouvé pour l'utilisateur (identifiant: " +
-                            { userId } +
+                            userId +
                             ')'
                         }
                     />
@@ -48,7 +48,7 @@ const Dashboard = () => {
                             <h1>
                                 Bonjour{' '}
                                 <span className="welcome">
-                                    {data.data.userInfos.firstName}
+                                    {data.userInfos.firstName}
                                 </span>
                             </h1>
                             <h2>
@@ -68,11 +68,11 @@ const Dashboard = () => {
                                     <Intensity userId={userId} />
                                 </div>
                                 <div className="graph-score">
-                                    <Score todayScore={data.data.todayScore} />
+                                    <Score todayScore={data.todayScore} />
                                 </div>
                             </div>
                             <div className="cards-container">
-                                <Cards keyData={data.data.keyData} />
+                                <Cards keyData={data.keyData} />
                             </div>
                         </div>
                     </>

@@ -10,9 +10,6 @@ import { useEffect, useState } from 'react'
  * @category Utils
  */
 export function useFetch(url, transformData, mockData) {
-    // Whether to use mock data or not
-    const useMock = true
-
     const [data, setData] = useState({})
 
     const [loading, setLoading] = useState(true)
@@ -30,7 +27,7 @@ export function useFetch(url, transformData, mockData) {
                 await new Promise((r) => setTimeout(r, 1 * 1000))
                 let receivedData
 
-                if (useMock && mockData) {
+                if (mockData) {
                     receivedData = mockData
                 } else {
                     const response = await fetch(url)
@@ -52,7 +49,7 @@ export function useFetch(url, transformData, mockData) {
         }
 
         fetchData()
-    }, [url, transformData, mockData, useMock])
+    }, [url, transformData, mockData])
 
     return { loading, data, error, exception }
 }

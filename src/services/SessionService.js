@@ -1,18 +1,21 @@
 import { useFetch } from '../utils/hooks'
 import BackendUrl from './BackendUrl'
+import SessionMock from '../mock/SessionMock'
 
 /**
  * Get user session data from backend and transform data received
  * @function SessionService
  * @param {number} userId user identifier
+ * @param {boolean} useMock use mock data or not
  * @returns the transformed session user data
  * @category Services
  */
-const SessionService = (userId) => {
+const SessionService = (userId, useMock = true) => {
+    const mockData = useMock ? SessionMock : undefined
     return useFetch(
         BackendUrl + '/user/' + userId + '/average-sessions',
         SessionTransform,
-        SessionMock
+        mockData
     )
 }
 
@@ -36,54 +39,6 @@ const SessionTransform = (data) => {
         if (session.day === 7) session.dayText = 'D'
         return session
     })
-}
-
-/**
- * Mock session data
- * @kind constant
- * @category Mock
- */
-const SessionMock = {
-    data: {
-        userId: 12,
-        sessions: [
-            {
-                day: 1,
-                sessionLength: 40,
-                dayText: 'L',
-            },
-            {
-                day: 2,
-                sessionLength: 45,
-                dayText: 'M',
-            },
-            {
-                day: 3,
-                sessionLength: 30,
-                dayText: 'M',
-            },
-            {
-                day: 4,
-                sessionLength: 20,
-                dayText: 'J',
-            },
-            {
-                day: 5,
-                sessionLength: 20,
-                dayText: 'V',
-            },
-            {
-                day: 6,
-                sessionLength: 40,
-                dayText: 'S',
-            },
-            {
-                day: 7,
-                sessionLength: 30,
-                dayText: 'D',
-            },
-        ],
-    },
 }
 
 export default SessionService

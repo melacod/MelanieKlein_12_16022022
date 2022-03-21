@@ -1,3 +1,5 @@
+import UserDataMock from '../mock/UserDataMock'
+import UserData from '../model/UserData'
 import { useFetch } from '../utils/hooks'
 import BackendUrl from './BackendUrl'
 
@@ -5,11 +7,13 @@ import BackendUrl from './BackendUrl'
  * Get user data from backend and transform data received
  * @function UserService
  * @param {number} userId user identifier
+ * @param {boolean} useMock use mock data or not
  * @returns the transformed user data
  * @category Services
  */
-const UserService = (userId) => {
-    return useFetch(BackendUrl + '/user/' + userId, UserTransform, UserMock)
+const UserService = (userId, userMock = true) => {
+    const mockData = userMock ? UserDataMock : undefined
+    return useFetch(BackendUrl + '/user/' + userId, UserTransform, mockData)
 }
 
 /**
@@ -21,31 +25,7 @@ const UserService = (userId) => {
  * @category Services
  */
 const UserTransform = (data) => {
-    if (!data.data.todayScore) data.data.todayScore = data.data.score
-    return data
-}
-
-/**
- * Mock user data
- * @kind constant
- * @category Mock
- */
-const UserMock = {
-    data: {
-        id: 12,
-        userInfos: {
-            firstName: 'Karl',
-            lastName: 'Dovineau',
-            age: 31,
-        },
-        todayScore: 0.4,
-        keyData: {
-            calorieCount: 2820,
-            proteinCount: 450,
-            carbohydrateCount: 350,
-            lipidCount: 250,
-        },
-    },
+    return new UserData(data.data)
 }
 
 export default UserService
