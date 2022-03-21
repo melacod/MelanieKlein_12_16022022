@@ -2,10 +2,10 @@
  * Class representing user data
  */
 class UserData {
-    constructor({ id, userInfos, score, todayScore, keyData }) {
+    constructor({ id, userInfos, todayScore, keyData }) {
         this.id = id
         this.userInfos = new UserInfos(userInfos)
-        this.todayScore = todayScore ? todayScore : score
+        this.todayScore = todayScore
         this.keyData = new KeyData(keyData)
     }
 }

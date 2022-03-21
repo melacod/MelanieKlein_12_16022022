@@ -1,4 +1,5 @@
 import IntensityMock from '../mock/IntensityMock'
+import IntensityData from '../model/IntensityData'
 import { useFetch } from '../utils/hooks'
 import BackendUrl from './BackendUrl'
 
@@ -10,7 +11,7 @@ import BackendUrl from './BackendUrl'
  * @returns the transformed intensity user data
  * @category Services
  */
-const IntensityService = (userId, useMock = true) => {
+const IntensityService = (userId, useMock = false) => {
     const mockData = useMock ? IntensityMock : undefined
     return useFetch(
         BackendUrl + '/user/' + userId + '/performance',
@@ -31,8 +32,7 @@ const IntensityTransform = (data) => {
     return data.data.data.map((obj) => {
         const englishKindText = data.data.kind[obj.kind]
         const frenchKindText = IntensityTranslate(englishKindText)
-        obj.kindText = frenchKindText
-        return obj
+        return new IntensityData(obj.value, frenchKindText)
     })
 }
 

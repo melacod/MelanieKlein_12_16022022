@@ -11,7 +11,7 @@ import BackendUrl from './BackendUrl'
  * @returns the transformed user data
  * @category Services
  */
-const UserService = (userId, userMock = true) => {
+const UserService = (userId, userMock = false) => {
     const mockData = userMock ? UserDataMock : undefined
     return useFetch(BackendUrl + '/user/' + userId, UserTransform, mockData)
 }
@@ -25,6 +25,9 @@ const UserService = (userId, userMock = true) => {
  * @category Services
  */
 const UserTransform = (data) => {
+    if (data.data.score) {
+        data.data.todayScore = data.data.score
+    }
     return new UserData(data.data)
 }
 
