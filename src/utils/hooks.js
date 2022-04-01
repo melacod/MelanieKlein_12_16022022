@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react'
  * Hooks to fetch data or use mock data and then transform received data
  * @function useFetch
  * @param {string} url url to fecth data from
- * @param {function} transformData function used to transform received data
- * @param {object} mockData mock data
+ * @param {function} DataTransformer function used to transform received data
+ * @param {object} dataMock mock data
  * @returns the transformed recevied data
  * @category Utils
  */
-export function useFetch(url, transformData, mockData) {
+export function useFetch(url, DataTransformer, dataMock) {
     const [data, setData] = useState({})
 
     const [loading, setLoading] = useState(true)
@@ -27,15 +27,15 @@ export function useFetch(url, transformData, mockData) {
                 await new Promise((r) => setTimeout(r, 1 * 1000))
                 let receivedData
 
-                if (mockData) {
-                    receivedData = mockData
+                if (dataMock) {
+                    receivedData = dataMock
                 } else {
                     const response = await fetch(url)
                     receivedData = await response.json()
                 }
 
-                if (transformData) {
-                    receivedData = transformData(receivedData)
+                if (DataTransformer) {
+                    receivedData = DataTransformer(receivedData)
                 }
 
                 setData(receivedData)
@@ -49,7 +49,7 @@ export function useFetch(url, transformData, mockData) {
         }
 
         fetchData()
-    }, [url, transformData, mockData])
+    }, [url, DataTransformer, dataMock])
 
     return { loading, data, error, exception }
 }

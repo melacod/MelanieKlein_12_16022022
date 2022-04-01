@@ -15,7 +15,7 @@ const ActivityService = (userId, useMock = false) => {
     const mockData = useMock ? ActivityMock : undefined
     return useFetch(
         BackendUrl + '/user/' + userId + '/activity',
-        ActivityTransform,
+        ActivityTransformer,
         mockData
     )
 }
@@ -23,12 +23,12 @@ const ActivityService = (userId, useMock = false) => {
 /**
  * Transform activity data received from backend.
  * Add a dayNumber property that match array position + 1
- * @function ActivityTransform
+ * @function ActivityTransformer
  * @param {object} data activity data received from backend
  * @returns activity data transformed
  * @category Services
  */
-const ActivityTransform = (data) => {
+const ActivityTransformer = (data) => {
     return data.data.sessions.map((session, indexSession) => {
         return new ActivityData(
             indexSession + 1,

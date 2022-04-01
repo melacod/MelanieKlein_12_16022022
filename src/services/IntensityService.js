@@ -15,7 +15,7 @@ const IntensityService = (userId, useMock = false) => {
     const mockData = useMock ? IntensityMock : undefined
     return useFetch(
         BackendUrl + '/user/' + userId + '/performance',
-        IntensityTransform,
+        IntensityTransformer,
         mockData
     )
 }
@@ -23,12 +23,12 @@ const IntensityService = (userId, useMock = false) => {
 /**
  * Transform intensity data received from backend.
  * Add a kindText property that contains the french kind text from the kind id.
- * @function IntensityTransform
+ * @function IntensityTransformer
  * @param {object} data intensity data received from backend
  * @returns intensity data transformed
  * @category Services
  */
-const IntensityTransform = (data) => {
+const IntensityTransformer = (data) => {
     return data.data.data.map((obj) => {
         const englishKindText = data.data.kind[obj.kind]
         const frenchKindText = IntensityTranslate(englishKindText)

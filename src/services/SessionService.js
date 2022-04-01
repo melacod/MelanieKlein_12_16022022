@@ -15,7 +15,7 @@ const SessionService = (userId, useMock = false) => {
     const mockData = useMock ? SessionMock : undefined
     return useFetch(
         BackendUrl + '/user/' + userId + '/average-sessions',
-        SessionTransform,
+        SessionTransformer,
         mockData
     )
 }
@@ -23,12 +23,12 @@ const SessionService = (userId, useMock = false) => {
 /**
  * Transform session data received from backend.
  * Add a dayText property that contains the french first letter of the day.
- * @function SessionTransform
+ * @function SessionTransformer
  * @param {object} data session data received from backend
  * @returns session data transformed
  * @category Services
  */
-const SessionTransform = (data) => {
+const SessionTransformer = (data) => {
     return data.data.sessions.map((session) => {
         let dayText = ''
         if (session.day === 1) dayText = 'L'
